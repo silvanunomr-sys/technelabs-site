@@ -1,0 +1,436 @@
+<title>Technelabs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap">
+
+<style>
+/* === TOKENS — Blueprint / Desenho Técnico
+   Layout: full-bleed sections com max-width 1160px
+   Accent: azul-aço sobre slate escuro
+*/
+:root {
+  --bg:      #0a1626;
+  --bg2:     #0d1d33;
+  --bg3:     #0f2340;
+  --fg:      #e8eff7;
+  --fg2:     #8ea3ba;
+  --fg3:     #5f748c;
+  --accent:  #7fb2e0;
+  --amber:   #d9a634;
+  --border:  rgba(140,180,220,0.18);
+  --grid:    rgba(140,180,220,0.07);
+  --radius:  4px;
+  color-scheme: dark;
+
+  --font-head: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+}
+/* light mode */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:     #f0f4f8;
+    --bg2:    #ffffff;
+    --bg3:    #e4ecf4;
+    --fg:     #0a1626;
+    --fg2:    #3a5068;
+    --fg3:    #6a8099;
+    --accent: #2e6aa8;
+    --amber:  #c9951f;
+    --border: rgba(10,22,38,0.14);
+    --grid:   rgba(10,22,38,0.05);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg:     #f0f4f8;
+  --bg2:    #ffffff;
+  --bg3:    #e4ecf4;
+  --fg:     #0a1626;
+  --fg2:    #3a5068;
+  --fg3:    #6a8099;
+  --accent: #2e6aa8;
+  --amber:  #c9951f;
+  --border: rgba(10,22,38,0.14);
+  --grid:   rgba(10,22,38,0.05);
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.wrap { max-width: 1160px; margin: 0 auto; width: 100%; }
+
+/* === LOGO === */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--fg);
+}
+.logo-tau {
+  flex-shrink: 0;
+}
+.logo-wordmark {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+.logo-wordmark .tau-char { color: var(--accent); }
+.logo-wordmark .labs { color: var(--accent); }
+
+/* === NAV === */
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: rgba(10,22,38,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) nav { background: rgba(240,244,248,0.94); }
+}
+:root[data-theme="light"] nav { background: rgba(240,244,248,0.94); }
+
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-block: 16px;
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link {
+  color: var(--fg2); text-decoration: none; font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.1em; font-weight: 500; transition: color .15s;
+  text-transform: uppercase;
+}
+.nav-link:hover { color: var(--fg); }
+.nav-cta {
+  color: var(--bg) !important;
+  background: var(--accent);
+  padding: 7px 16px;
+  font-weight: 500 !important;
+  transition: opacity .15s !important;
+}
+.nav-cta:hover { opacity: 0.85 !important; }
+
+/* === HERO === */
+.hero {
+  padding-block: 96px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-corners::before,
+.hero-corners::after {
+  content: '';
+  position: absolute;
+  width: 24px; height: 24px;
+  border-color: var(--border);
+  border-style: solid;
+}
+.hero-corners::before { top: 32px; left: 32px; border-width: 1px 0 0 1px; }
+.hero-corners::after  { top: 32px; right: 32px; border-width: 1px 1px 0 0; }
+
+.hero-content {
+  position: relative; text-align: center; max-width: 760px; margin: 0 auto;
+}
+.hero-sheet {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--fg3); margin-bottom: 32px;
+}
+h1 {
+  font-family: var(--font-head);
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 800;
+  line-height: 1.07;
+  letter-spacing: -0.5px;
+  text-wrap: balance;
+  margin-bottom: 24px;
+}
+h1 em { font-style: normal; color: var(--accent); }
+.hero-sub {
+  font-size: 17px; color: var(--fg2); line-height: 1.65;
+  max-width: 540px; margin: 0 auto 40px; text-wrap: balance;
+}
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: all .15s; border: none;
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { opacity: 0.88; }
+.btn-secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* === SECTION HEADERS === */
+.section { padding-block: 72px; }
+.section-header { margin-bottom: 52px; }
+.sheet-num {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--fg3); margin-bottom: 10px;
+}
+h2 {
+  font-family: var(--font-head); font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 800; line-height: 1.1; letter-spacing: -0.3px; text-wrap: balance;
+  margin-bottom: 14px;
+}
+.section-sub { font-size: 15px; color: var(--fg2); max-width: 500px; line-height: 1.65; }
+
+/* === PRODUCTS GRID === */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.product-card {
+  background: var(--bg);
+  padding: 32px 28px 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  text-decoration: none; color: inherit;
+  transition: background .15s;
+  position: relative;
+}
+.product-card::before {
+  content: attr(data-dwg);
+  position: absolute; top: 12px; right: 14px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.12em; color: var(--fg3);
+}
+.product-card:hover { background: var(--bg2); }
+.product-card.active:hover { background: var(--bg3); }
+.product-name {
+  font-family: var(--font-head); font-weight: 800; font-size: 22px;
+  letter-spacing: 0.04em;
+}
+.product-desc { font-size: 14px; color: var(--fg2); line-height: 1.6; flex: 1; }
+.product-status {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; align-self: flex-start;
+  padding: 4px 10px; border: 1px solid;
+}
+.status-live   { color: var(--accent); border-color: rgba(127,178,224,0.4); }
+.status-dev    { color: var(--fg3);    border-color: var(--border); }
+
+/* === SPECS / WHY === */
+.divider { height: 1px; background: var(--border); }
+
+.specs-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 48px;
+}
+.spec {}
+.spec-val {
+  font-family: var(--font-head); font-weight: 800; font-size: 38px;
+  color: var(--accent); letter-spacing: -1px; line-height: 1;
+  margin-bottom: 10px; font-variant-numeric: tabular-nums;
+}
+.spec h4 {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--fg); margin-bottom: 8px;
+}
+.spec p { font-size: 14px; color: var(--fg2); line-height: 1.6; }
+
+/* === CTA BAND === */
+.cta-band {
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding-block: 64px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-band h2 { margin-bottom: 12px; }
+.cta-band p  { color: var(--fg2); font-size: 15px; margin-bottom: 32px; }
+
+/* === FOOTER === */
+footer {
+  padding-block: 40px; border-top: 1px solid var(--border);
+}
+.footer-inner {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.footer-copy { font-family: var(--font-mono); font-size: 11px; color: var(--fg3); margin-top: 10px; letter-spacing: 0.08em; }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg3); text-decoration: none; transition: color .15s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .nav-link:not(.nav-cta) { display: none; }
+  h1 { font-size: 34px; }
+  .products-grid { grid-template-columns: 1fr; }
+  .specs-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-inner { flex-direction: column; }
+}
+</style>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">
+      <!-- τ tau logo: barra horizontal + haste com dobra para a direita -->
+      <svg class="logo-tau" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="square"
+              d="M10 28H90 M50 28V68Q50 86 68 86H82"/>
+      </svg>
+      <span class="logo-wordmark">TECHNE<span class="labs">LABS</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#produtos" class="nav-link">Produtos</a>
+      <a href="#sobre" class="nav-link">Sobre</a>
+      <a href="privacidade.html" class="nav-link">Privacidade</a>
+      <a href="mailto:info@technelabs.pt" class="nav-link nav-cta">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero bg-grid hero-corners">
+  <div class="wrap hero-content">
+    <div class="hero-sheet">SHEET 00 · TECHNELABS · REV. A</div>
+    <h1>Software para a <em>indústria real</em></h1>
+    <p class="hero-sub">A Technelabs desenvolve software de gestão para oficinas, fábricas e empresas de manutenção — construído por quem trabalha no setor, para quem trabalha no setor.</p>
+    <div class="hero-actions">
+      <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+      <a href="mailto:info@technelabs.pt" class="btn btn-secondary">Contacto</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section class="section" id="produtos">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="sheet-num">SHEET 01 · PRODUTOS</div>
+      <h2>Software feito para a oficina</h2>
+      <p class="section-sub">Cada produto nasce de um problema real, testado em produção antes de chegar ao mercado.</p>
+    </div>
+    <div class="products-grid">
+
+      <a href="https://metalprosite.vercel.app" target="_blank" class="product-card active" data-dwg="DWG-P01">
+        <div class="product-name">MetalPro</div>
+        <p class="product-desc">Gestão completa de oficinas de metalomecânica — orçamentos, ordens de fabrico, clientes, stock e faturação, numa só app Android.</p>
+        <span class="product-status status-live">● Disponível</span>
+      </a>
+
+      <div class="product-card" data-dwg="DWG-P02">
+        <div class="product-name">FabPro</div>
+        <p class="product-desc">Gestão de obras e projetos para serralharia civil — encomendas, equipas e prazos no terreno.</p>
+        <span class="product-status status-dev">Em desenvolvimento</span>
+      </div>
+
+      <div class="product-card" data-dwg="DWG-P03">
+        <div class="product-name">ManPro</div>
+        <p class="product-desc">CMMS para manutenção industrial — planos de manutenção preventiva, histórico de avarias e intervenções técnicas.</p>
+        <span class="product-status status-dev">Em desenvolvimento</span>
+      </div>
+
+      <div class="product-card" data-dwg="DWG-P04">
+        <div class="product-name">PaintPro</div>
+        <p class="product-desc">Gestão de lacagem e tratamento de superfícies — orçamentos por m², ficha técnica de produtos e controlo de qualidade.</p>
+        <span class="product-status status-dev">Em desenvolvimento</span>
+      </div>
+
+      <div class="product-card" data-dwg="DWG-P05">
+        <div class="product-name">Captio</div>
+        <p class="product-desc">CRM para equipas comerciais industriais — leads, pipeline de vendas, seguimento de propostas e relatórios.</p>
+        <span class="product-status status-dev">Em desenvolvimento</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT / SPECS -->
+<section class="section" id="sobre">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="sheet-num">SHEET 02 · SOBRE</div>
+      <h2>Software simples, para trabalho complexo</h2>
+      <p class="section-sub">Cada produto Technelabs resolve um problema específico do setor industrial — sem curva de aprendizagem, sem funcionalidades a mais.</p>
+    </div>
+    <div class="specs-grid">
+      <div class="spec">
+        <div class="spec-val">100%</div>
+        <h4>Foco industrial</h4>
+        <p>Nenhum produto genérico adaptado. Desenhado especificamente para o setor metalomecânico e industrial.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-val">Android</div>
+        <h4>Pronto para a oficina</h4>
+        <p>Apps nativas para Android, pensadas para serem usadas com luvas, em ambientes ruidosos e sem internet estável.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-val">PT</div>
+        <h4>Feito em Portugal</h4>
+        <p>Suporte em português, NIF e faturação adaptados ao mercado nacional e à legislação fiscal portuguesa.</p>
+      </div>
+      <div class="spec">
+        <div class="spec-val">SaaS</div>
+        <h4>Sem instalações</h4>
+        <p>Subscrição mensal, sem servidores para gerir, sem IT interno necessário. Começa a funcionar no primeiro dia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band bg-grid">
+  <div class="wrap">
+    <div class="sheet-num" style="margin-bottom:16px">SHEET 03 · COMEÇAR</div>
+    <h2>Pronto para experimentar o MetalPro?</h2>
+    <p>Disponível na Google Play Store. Instala, cria a tua oficina e começa hoje.</p>
+    <div class="hero-actions">
+      <a href="https://metalprosite.vercel.app" target="_blank" class="btn btn-primary">Saber mais</a>
+      <a href="mailto:info@technelabs.pt" class="btn btn-secondary">Pedir demonstração</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <a href="/" class="logo">
+        <svg class="logo-tau" width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
+          <path fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="square"
+                d="M10 28H90 M50 28V68Q50 86 68 86H82"/>
+        </svg>
+        <span class="logo-wordmark" style="font-size:17px">TECHNE<span class="labs">LABS</span></span>
+      </a>
+      <p class="footer-copy">© 2026 TECHNELABS · VILA VERDE, PORTUGAL</p>
+    </div>
+    <nav class="footer-links">
+      <a href="#produtos">Produtos</a>
+      <a href="privacidade.html">Privacidade</a>
+      <a href="mailto:info@technelabs.pt">Contacto</a>
+    </nav>
+  </div>
+</footer>

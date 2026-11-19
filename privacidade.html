@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Política de Privacidade — Technelabs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap">
+
+</head>
+<body>
+<style>
+:root {
+  --bg: #0a0c10;
+  --bg2: #111318;
+  --bg3: #1a1d24;
+  --fg: #e8eaf0;
+  --fg2: #9499a8;
+  --accent: #e8a020;
+  --border: rgba(255,255,255,0.08);
+  --radius: 8px;
+  color-scheme: dark;
+  --font-head: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f5f2; --bg2: #ffffff; --bg3: #ebebeb;
+    --fg: #0d0f14; --fg2: #5a5f70; --accent: #c07010;
+    --border: rgba(0,0,0,0.09); color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f5f5f2; --bg2: #ffffff; --bg3: #ebebeb;
+  --fg: #0d0f14; --fg2: #5a5f70; --accent: #c07010;
+  --border: rgba(0,0,0,0.09); color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1160px; margin: 0 auto; }
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: rgba(10,12,16,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) nav { background: rgba(245,245,242,0.92); }
+}
+:root[data-theme="light"] nav { background: rgba(245,245,242,0.92); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
+.logo {
+  font-family: var(--font-head); font-weight: 700; font-size: 20px;
+  color: var(--fg); text-decoration: none; letter-spacing: -0.5px;
+  display: flex; align-items: center; gap: 8px;
+}
+.logo span { color: var(--accent); }
+.logo-mark {
+  width: 28px; height: 28px; background: var(--accent); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 16px; height: 16px; fill: #000; }
+.nav-back { font-size: 14px; color: var(--fg2); text-decoration: none; font-weight: 500; transition: color .15s; }
+.nav-back:hover { color: var(--fg); }
+
+.content-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-block: 64px;
+}
+.page-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+}
+h1 {
+  font-family: var(--font-head); font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700; letter-spacing: -1px; line-height: 1.1;
+  margin-bottom: 8px;
+}
+.meta { font-size: 13px; color: var(--fg2); margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+h2 {
+  font-family: var(--font-head); font-size: 20px; font-weight: 600;
+  letter-spacing: -0.3px; margin-top: 40px; margin-bottom: 12px; color: var(--fg);
+}
+p { color: var(--fg2); margin-bottom: 16px; }
+ul { color: var(--fg2); padding-left: 20px; margin-bottom: 16px; }
+li { margin-bottom: 8px; }
+strong { color: var(--fg); font-weight: 600; }
+.contact-box {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px 28px; margin-top: 40px;
+}
+.contact-box p { margin: 0; }
+.contact-email { color: var(--accent); font-weight: 600; }
+
+footer { padding-block: 40px; border-top: 1px solid var(--border); margin-top: 64px; }
+.footer-copy { font-size: 13px; color: var(--fg2); }
+</style>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H9zM2 9h5v5H2zM9 9h2v2H9zM13 9h2v2H13zM9 13h2v2H9zM13 13h2v2H13z"/></svg></div>
+      Techne<span>labs</span>
+    </a>
+    <a href="/" class="nav-back">← Voltar ao início</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="content-wrap">
+    <div class="page-eyebrow">Legal</div>
+    <h1>Política de Privacidade</h1>
+    <p class="meta">Última atualização: 19 de novembro de 2026</p>
+
+    <p>Esta Política de Privacidade descreve como a <strong>Technelabs</strong> recolhe, utiliza e protege os dados dos utilizadores dos seus produtos de software, incluindo o <strong>MetalPro</strong> e outros produtos futuros.</p>
+
+    <h2>1. Quem somos</h2>
+    <p>A Technelabs é uma empresa portuguesa de desenvolvimento de software especializado para o setor industrial e metalomecânico, com sede em Vila Verde, Portugal. Os nossos produtos destinam-se a utilização profissional por empresas do setor e respetivas equipas.</p>
+
+    <h2>2. Dados que recolhemos</h2>
+    <p>Para que os nossos produtos funcionem, recolhemos e armazenamos os seguintes tipos de dados, introduzidos diretamente pelo utilizador ou pela empresa que utiliza a aplicação:</p>
+    <ul>
+      <li><strong>Dados de conta:</strong> nome de utilizador e credenciais de acesso da equipa;</li>
+      <li><strong>Dados de clientes da empresa:</strong> nome, contacto telefónico, email e morada dos clientes das empresas que utilizam a aplicação;</li>
+      <li><strong>Dados operacionais:</strong> orçamentos, ordens de fabrico/reparação, stock, máquinas, faturas e outros registos de negócio introduzidos pelo utilizador;</li>
+      <li><strong>Ficheiros e imagens:</strong> fotografias e documentos anexados pelo utilizador (ex: fotos de peças, comprovativos de entrega, assinaturas digitais);</li>
+      <li><strong>Dados técnicos:</strong> informação básica do dispositivo, necessária ao funcionamento da aplicação (ex: notificações e alarmes no Android).</li>
+    </ul>
+
+    <h2>3. Como usamos os dados</h2>
+    <p>Os dados recolhidos são usados exclusivamente para permitir o funcionamento da aplicação: gestão de clientes, orçamentos, produção, stock e faturação da empresa que utiliza os nossos produtos. Não vendemos nem partilhamos estes dados com terceiros para fins de marketing ou publicidade.</p>
+
+    <h2>4. Armazenamento e segurança</h2>
+    <p>Os dados são armazenados de forma segura através da infraestrutura Supabase, com controlo de acesso por conta/equipa e encriptação em trânsito (HTTPS/TLS). Cada empresa cliente tem acesso apenas aos seus próprios dados (multi-tenant com isolamento por workspace).</p>
+
+    <h2>5. Partilha de dados com terceiros</h2>
+    <p>Não partilhamos dados pessoais com terceiros, exceto quando estritamente necessário para o funcionamento do serviço (ex: fornecedor de infraestrutura de base de dados) ou quando exigido por lei.</p>
+
+    <h2>6. Anúncios</h2>
+    <p>Os produtos Technelabs não apresentam anúncios de terceiros.</p>
+
+    <h2>7. Direitos do utilizador</h2>
+    <p>Os utilizadores podem solicitar, a qualquer momento, o acesso, correção ou eliminação dos seus dados, contactando-nos através do email indicado abaixo.</p>
+
+    <h2 id="eliminar-conta">7.1 Eliminação de conta e dados</h2>
+    <p>Para solicitar a eliminação da sua conta e dos dados associados, contacte <strong class="contact-email">privacidade@technelabs.pt</strong> indicando o nome da empresa/workspace a eliminar.</p>
+    <p>Após o pedido, os dados de conta e operacionais associados ao workspace serão eliminados no prazo de 30 dias, exceto registos que a lei obrigue a conservar (ex: documentos fiscais/contabilísticos).</p>
+
+    <h2>8. Alterações a esta política</h2>
+    <p>Esta política pode ser atualizada periodicamente. A data da última atualização está indicada no topo desta página. Alterações significativas serão comunicadas através da aplicação.</p>
+
+    <div class="contact-box">
+      <p>Para questões sobre esta Política de Privacidade, contacte-nos:</p>
+      <p style="margin-top:8px;"><strong class="contact-email">privacidade@technelabs.pt</strong></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="footer-copy">© 2026 Technelabs · Vila Verde, Portugal</p>
+  </div>
+</footer>
+</body>
+</html>
