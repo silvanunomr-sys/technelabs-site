@@ -71,19 +71,22 @@ nav{
   border-radius:2px;
 }
 .lang-select:focus{outline:none;border-color:var(--accent);}
-.hero{padding-block:96px 80px;position:relative;overflow:hidden;}
+
+/* ── Hero ── */
+.hero{padding-block:100px 80px;position:relative;overflow:hidden;}
 .hero-corners::before,.hero-corners::after{
   content:'';position:absolute;width:24px;height:24px;
   border-color:var(--border);border-style:solid;
 }
 .hero-corners::before{top:32px;left:32px;border-width:1px 0 0 1px;}
 .hero-corners::after{top:32px;right:32px;border-width:1px 1px 0 0;}
-.hero-content{position:relative;text-align:center;max-width:760px;margin:0 auto;}
-.hero-sheet{display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--fg3);margin-bottom:32px;}
-h1{font-family:var(--font-head);font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:1.07;letter-spacing:-0.5px;text-wrap:balance;margin-bottom:24px;}
+.hero-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto;}
+.hero-content{text-align:left;}
+.hero-sheet{display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--fg3);margin-bottom:28px;}
+h1{font-family:var(--font-head);font-size:clamp(34px,4.8vw,58px);font-weight:800;line-height:1.08;letter-spacing:-0.5px;text-wrap:balance;margin-bottom:22px;}
 h1 em{font-style:normal;color:var(--accent);}
-.hero-sub{font-size:17px;color:var(--fg2);line-height:1.65;max-width:540px;margin:0 auto 40px;text-wrap:balance;}
-.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.hero-sub{font-size:16px;color:var(--fg2);line-height:1.7;max-width:460px;margin-bottom:40px;text-wrap:balance;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
 .btn{
   display:inline-flex;align-items:center;gap:8px;
   padding:12px 22px;font-family:var(--font-mono);font-size:12px;
@@ -94,16 +97,59 @@ h1 em{font-style:normal;color:var(--accent);}
 .btn-primary:hover{opacity:0.88;}
 .btn-secondary{background:transparent;color:var(--fg);border:1px solid var(--border);}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
-.section{padding-block:72px;}
+
+/* ── App mockup ── */
+.hero-mockup{position:relative;display:flex;justify-content:center;align-items:center;}
+.mockup-phone{
+  width:220px;height:420px;background:var(--bg3);border:1.5px solid var(--border);
+  border-radius:28px;position:relative;overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(127,178,224,0.08);
+}
+.mockup-phone::before{
+  content:'';position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  width:60px;height:5px;background:var(--border);border-radius:3px;
+}
+.mockup-screen{position:absolute;inset:28px 10px 10px;background:var(--bg2);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
+.ms-topbar{background:var(--accent);height:40px;display:flex;align-items:center;padding:0 12px;gap:8px;flex-shrink:0;}
+.ms-topbar-dot{width:7px;height:7px;border-radius:50%;background:rgba(10,22,38,0.4);}
+.ms-topbar-title{font-family:var(--font-mono);font-size:9px;font-weight:500;color:var(--bg);letter-spacing:0.1em;text-transform:uppercase;}
+.ms-body{padding:10px;display:flex;flex-direction:column;gap:7px;flex:1;overflow:hidden;}
+.ms-card{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 10px;}
+.ms-card-label{font-family:var(--font-mono);font-size:7px;letter-spacing:0.14em;text-transform:uppercase;color:var(--fg3);margin-bottom:4px;}
+.ms-card-val{font-family:var(--font-head);font-size:16px;font-weight:800;color:var(--fg);line-height:1;}
+.ms-card-sub{font-size:8px;color:var(--fg2);margin-top:2px;}
+.ms-row{display:flex;gap:7px;}
+.ms-row .ms-card{flex:1;}
+.ms-list{background:var(--bg3);border:1px solid var(--border);border-radius:6px;overflow:hidden;flex:1;}
+.ms-list-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--border);}
+.ms-list-item:last-child{border-bottom:none;}
+.ms-li-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.ms-li-text{font-size:8px;color:var(--fg2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ms-li-badge{font-family:var(--font-mono);font-size:7px;color:var(--accent);border:1px solid rgba(127,178,224,0.3);padding:1px 5px;border-radius:2px;white-space:nowrap;}
+.mockup-glow{
+  position:absolute;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(127,178,224,0.12) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+}
+.mockup-label{
+  position:absolute;bottom:-32px;left:50%;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--fg3);white-space:nowrap;
+}
+
+/* ── Sections ── */
+.section{padding-block:80px;}
 .section-header{margin-bottom:52px;}
 .sheet-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--fg3);margin-bottom:10px;}
 h2{font-family:var(--font-head);font-size:clamp(26px,3.5vw,38px);font-weight:800;line-height:1.1;letter-spacing:-0.3px;text-wrap:balance;margin-bottom:14px;}
 .section-sub{font-size:15px;color:var(--fg2);max-width:500px;line-height:1.65;}
+
+/* ── Products grid ── */
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
 .product-card{
   background:var(--bg);padding:32px 28px 28px;
   display:flex;flex-direction:column;gap:14px;
-  text-decoration:none;color:inherit;transition:background .15s;position:relative;
+  text-decoration:none;color:inherit;transition:background .2s,transform .2s;position:relative;
 }
 .product-card::before{content:attr(data-dwg);position:absolute;top:12px;right:14px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--fg3);}
 .product-card:hover{background:var(--bg2);}
@@ -113,28 +159,101 @@ h2{font-family:var(--font-head);font-size:clamp(26px,3.5vw,38px);font-weight:800
 .product-status{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;align-self:flex-start;padding:4px 10px;border:1px solid;}
 .status-live{color:var(--accent);border-color:rgba(127,178,224,0.4);}
 .status-dev{color:var(--fg3);border-color:var(--border);}
+
+/* ── Feature spotlight ── */
+.feature-spotlight{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  border:1px solid var(--border);padding:48px;background:var(--bg2);
+}
+.feature-mockup-wrap{position:relative;}
+.feature-screen{
+  background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.fs-topbar{background:var(--bg3);height:36px;display:flex;align-items:center;padding:0 14px;gap:10px;border-bottom:1px solid var(--border);}
+.fs-dot{width:8px;height:8px;border-radius:50%;}
+.fs-dot-r{background:#e05c5c;}
+.fs-dot-y{background:#e0be5c;}
+.fs-dot-g{background:#5ce07a;}
+.fs-title{font-family:var(--font-mono);font-size:10px;color:var(--fg3);letter-spacing:0.1em;margin-left:auto;margin-right:auto;}
+.fs-body{padding:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.fs-stat{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center;}
+.fs-stat-val{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--accent);line-height:1;}
+.fs-stat-label{font-family:var(--font-mono);font-size:9px;color:var(--fg3);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
+.fs-table{background:var(--bg3);border:1px solid var(--border);border-radius:4px;overflow:hidden;grid-column:1/-1;}
+.fs-row{display:flex;gap:0;border-bottom:1px solid var(--border);}
+.fs-row:last-child{border-bottom:none;}
+.fs-row-head{background:rgba(127,178,224,0.08);}
+.fs-cell{flex:1;padding:7px 10px;font-size:10px;color:var(--fg2);font-family:var(--font-mono);letter-spacing:0.04em;border-right:1px solid var(--border);}
+.fs-cell:last-child{border-right:none;}
+.fs-cell-head{color:var(--fg3);font-size:9px;text-transform:uppercase;letter-spacing:0.1em;}
+.fs-badge{display:inline-block;padding:1px 6px;border-radius:2px;font-size:9px;font-family:var(--font-mono);}
+.fs-badge-live{background:rgba(127,178,224,0.15);color:var(--accent);}
+.fs-badge-pend{background:rgba(255,200,100,0.12);color:#e0c86a;}
+.feature-text{}
+.feature-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.feature-title{font-family:var(--font-head);font-size:clamp(22px,2.5vw,30px);font-weight:800;line-height:1.15;margin-bottom:16px;}
+.feature-desc{font-size:15px;color:var(--fg2);line-height:1.7;margin-bottom:28px;}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.feature-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--fg2);}
+.feature-list li::before{content:'→';font-family:var(--font-mono);color:var(--accent);flex-shrink:0;margin-top:2px;}
+
+/* ── Divider ── */
 .divider{height:1px;background:var(--border);}
+
+/* ── Specs ── */
 .specs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:48px;}
 .spec-val{font-family:var(--font-head);font-weight:800;font-size:38px;color:var(--accent);letter-spacing:-1px;line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums;}
 .spec h4{font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--fg);margin-bottom:8px;}
 .spec p{font-size:14px;color:var(--fg2);line-height:1.6;}
-.cta-band{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-block:64px;text-align:center;position:relative;overflow:hidden;}
+
+/* ── CTA band ── */
+.cta-band{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-block:72px;text-align:center;position:relative;overflow:hidden;}
 .cta-band h2{margin-bottom:12px;}
 .cta-band p{color:var(--fg2);font-size:15px;margin-bottom:32px;}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* ── Footer ── */
 footer{padding-block:40px;border-top:1px solid var(--border);}
 .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
 .footer-copy{font-family:var(--font-mono);font-size:11px;color:var(--fg3);margin-top:10px;letter-spacing:0.08em;}
 .footer-links{display:flex;gap:24px;flex-wrap:wrap;}
 .footer-links a{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg3);text-decoration:none;transition:color .15s;}
 .footer-links a:hover{color:var(--accent);}
+
+/* ── Animations ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.fade-up-d1{transition-delay:.1s;}
+.fade-up-d2{transition-delay:.2s;}
+.fade-up-d3{transition-delay:.3s;}
+.fade-up-d4{transition-delay:.4s;}
+.fade-up-d5{transition-delay:.5s;}
+.phone-float{animation:phoneFloat 4s ease-in-out infinite;}
+@keyframes phoneFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* ── RTL ── */
 html[dir="rtl"] .hero-corners::before{left:auto;right:32px;border-width:1px 0 0 1px;}
 html[dir="rtl"] .hero-corners::after{right:auto;left:32px;border-width:1px 1px 0 0;}
+html[dir="rtl"] .hero-inner{direction:rtl;}
+html[dir="rtl"] .feature-spotlight{direction:rtl;}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:48px;}
+  .hero-content{text-align:center;}
+  .hero-sub{margin-left:auto;margin-right:auto;}
+  .hero-actions{justify-content:center;}
+  .hero-mockup{justify-content:center;}
+  .feature-spotlight{grid-template-columns:1fr;gap:36px;padding:28px;}
+}
 @media(max-width:600px){
   .nav-link:not(.nav-cta){display:none;}
-  h1{font-size:34px;}
+  h1{font-size:32px;}
   .products-grid{grid-template-columns:1fr;}
   .specs-grid{grid-template-columns:1fr 1fr;gap:32px;}
   .footer-inner{flex-direction:column;}
+  .mockup-phone{width:180px;height:340px;}
 }
 </style>
 
@@ -154,13 +273,66 @@ html[dir="rtl"] .hero-corners::after{right:auto;left:32px;border-width:1px 1px 0
 </nav>
 
 <section class="hero bg-grid hero-corners">
-  <div class="wrap hero-content">
-    <div class="hero-sheet" data-tl="sheet0">SHEET 00 · TECHNELABS · REV. A</div>
-    <h1 data-tl-html="hero.h1">We identify problems.<br><em>We build solutions.</em></h1>
-    <p class="hero-sub" data-tl="hero.sub">Technelabs is a software house that builds products solving real-world problems — from the factory floor to the manager's desk.</p>
-    <div class="hero-actions">
-      <a href="#produtos" class="btn btn-primary" data-tl="hero.cta1">See products</a>
-      <a href="mailto:info@technelabs.pt" class="btn btn-secondary" data-tl="hero.cta2">Contact</a>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-sheet fade-up" data-tl="sheet0">SHEET 00 · TECHNELABS · REV. A</div>
+        <h1 class="fade-up fade-up-d1" data-tl-html="hero.h1">We identify problems.<br><em>We build solutions.</em></h1>
+        <p class="hero-sub fade-up fade-up-d2" data-tl="hero.sub">Technelabs builds software that solves specific problems in specific industries — precise tools, without complexity.</p>
+        <div class="hero-actions fade-up fade-up-d3">
+          <a href="#produtos" class="btn btn-primary" data-tl="hero.cta1">See products</a>
+          <a href="mailto:info@technelabs.pt" class="btn btn-secondary" data-tl="hero.cta2">Contact</a>
+        </div>
+      </div>
+      <div class="hero-mockup fade-up fade-up-d2">
+        <div class="mockup-glow"></div>
+        <div class="mockup-phone phone-float">
+          <div class="mockup-screen">
+            <div class="ms-topbar">
+              <div class="ms-topbar-dot"></div>
+              <div class="ms-topbar-dot"></div>
+              <div class="ms-topbar-title">MetalPro</div>
+            </div>
+            <div class="ms-body">
+              <div class="ms-row">
+                <div class="ms-card">
+                  <div class="ms-card-label">Orçamentos</div>
+                  <div class="ms-card-val">24</div>
+                  <div class="ms-card-sub">este mês</div>
+                </div>
+                <div class="ms-card">
+                  <div class="ms-card-label">Em curso</div>
+                  <div class="ms-card-val">7</div>
+                  <div class="ms-card-sub">ordens</div>
+                </div>
+              </div>
+              <div class="ms-list">
+                <div class="ms-list-item">
+                  <div class="ms-li-dot"></div>
+                  <span class="ms-li-text">OF-2024-089 · Suporte inox</span>
+                  <span class="ms-li-badge">Em curso</span>
+                </div>
+                <div class="ms-list-item">
+                  <div class="ms-li-dot" style="background:var(--fg3)"></div>
+                  <span class="ms-li-text">OF-2024-088 · Chapa 3mm</span>
+                  <span class="ms-li-badge" style="color:var(--fg3);border-color:var(--border)">Concluído</span>
+                </div>
+                <div class="ms-list-item">
+                  <div class="ms-li-dot"></div>
+                  <span class="ms-li-text">OF-2024-090 · Perfil HEB</span>
+                  <span class="ms-li-badge">Pendente</span>
+                </div>
+                <div class="ms-list-item">
+                  <div class="ms-li-dot" style="background:var(--fg3)"></div>
+                  <span class="ms-li-text">OF-2024-087 · Grade aço</span>
+                  <span class="ms-li-badge" style="color:var(--fg3);border-color:var(--border)">Concluído</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-label">MetalPro · Android</div>
+      </div>
     </div>
   </div>
 </section>
@@ -169,33 +341,33 @@ html[dir="rtl"] .hero-corners::after{right:auto;left:32px;border-width:1px 1px 0
 
 <section class="section" id="produtos">
   <div class="wrap">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <div class="sheet-num" data-tl="sheet1">SHEET 01 · PRODUCTS</div>
       <h2 data-tl="prod.h2">Products that solve real problems</h2>
       <p class="section-sub" data-tl="prod.sub">Every product is born from a real problem, tested in production before reaching the market.</p>
     </div>
     <div class="products-grid">
-      <a href="https://metalprosite.vercel.app" target="_blank" class="product-card active" data-dwg="DWG-P01">
+      <a href="https://metalprosite.vercel.app" target="_blank" class="product-card active fade-up" data-dwg="DWG-P01">
         <div class="product-name">MetalPro</div>
         <p class="product-desc" data-tl="p1.desc">Complete management for metalworking workshops — quotes, work orders, clients, stock and invoicing, in a single Android app.</p>
         <span class="product-status status-live" data-tl="p1.status">● Available</span>
       </a>
-      <div class="product-card" data-dwg="DWG-P02">
+      <div class="product-card fade-up fade-up-d1" data-dwg="DWG-P02">
         <div class="product-name">FabPro</div>
         <p class="product-desc" data-tl="p2.desc">Project and job management for civil metalwork — orders, teams and deadlines in the field.</p>
         <span class="product-status status-dev" data-tl="status.dev">In development</span>
       </div>
-      <div class="product-card" data-dwg="DWG-P03">
+      <div class="product-card fade-up fade-up-d2" data-dwg="DWG-P03">
         <div class="product-name">ManPro</div>
         <p class="product-desc" data-tl="p3.desc">CMMS for industrial maintenance — preventive maintenance plans, breakdown history and technical interventions.</p>
         <span class="product-status status-dev" data-tl="status.dev">In development</span>
       </div>
-      <div class="product-card" data-dwg="DWG-P04">
+      <div class="product-card fade-up fade-up-d3" data-dwg="DWG-P04">
         <div class="product-name">PaintPro</div>
         <p class="product-desc" data-tl="p4.desc">Lacquering and surface treatment management — per-m² quotes, product data sheets and quality control.</p>
         <span class="product-status status-dev" data-tl="status.dev">In development</span>
       </div>
-      <div class="product-card" data-dwg="DWG-P05">
+      <div class="product-card fade-up fade-up-d4" data-dwg="DWG-P05">
         <div class="product-name">Captio</div>
         <p class="product-desc" data-tl="p5.desc">CRM for industrial sales teams — leads, sales pipeline, proposal tracking and reports.</p>
         <span class="product-status status-dev" data-tl="status.dev">In development</span>
@@ -206,25 +378,96 @@ html[dir="rtl"] .hero-corners::after{right:auto;left:32px;border-width:1px 1px 0
 
 <div class="divider"></div>
 
+<!-- MetalPro spotlight -->
+<section class="section" style="padding-block:48px 80px;">
+  <div class="wrap">
+    <div class="feature-spotlight fade-up">
+      <div class="feature-mockup-wrap">
+        <div class="feature-screen">
+          <div class="fs-topbar">
+            <div class="fs-dot fs-dot-r"></div>
+            <div class="fs-dot fs-dot-y"></div>
+            <div class="fs-dot fs-dot-g"></div>
+            <div class="fs-title">MetalPro — Gestão de Orçamentos</div>
+          </div>
+          <div class="fs-body">
+            <div class="fs-stat">
+              <div class="fs-stat-val">€18.4k</div>
+              <div class="fs-stat-label">Faturado</div>
+            </div>
+            <div class="fs-stat">
+              <div class="fs-stat-val">24</div>
+              <div class="fs-stat-label">Orçamentos</div>
+            </div>
+            <div class="fs-stat">
+              <div class="fs-stat-val">7</div>
+              <div class="fs-stat-label">Em curso</div>
+            </div>
+            <div class="fs-table">
+              <div class="fs-row fs-row-head">
+                <div class="fs-cell fs-cell-head">Ref.</div>
+                <div class="fs-cell fs-cell-head">Cliente</div>
+                <div class="fs-cell fs-cell-head">Valor</div>
+                <div class="fs-cell fs-cell-head">Estado</div>
+              </div>
+              <div class="fs-row">
+                <div class="fs-cell">OF-089</div>
+                <div class="fs-cell">Metalúrgica P.</div>
+                <div class="fs-cell">€1.240</div>
+                <div class="fs-cell"><span class="fs-badge fs-badge-live">Em curso</span></div>
+              </div>
+              <div class="fs-row">
+                <div class="fs-cell">OF-088</div>
+                <div class="fs-cell">Construções L.</div>
+                <div class="fs-cell">€890</div>
+                <div class="fs-cell"><span class="fs-badge fs-badge-pend">Pendente</span></div>
+              </div>
+              <div class="fs-row">
+                <div class="fs-cell">OF-087</div>
+                <div class="fs-cell">Ind. Ferreira</div>
+                <div class="fs-cell">€3.100</div>
+                <div class="fs-cell"><span class="fs-badge fs-badge-live">Concluído</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-text">
+        <div class="feature-tag" data-tl="feat.tag">Featured — MetalPro</div>
+        <div class="feature-title" data-tl="feat.title">Full workshop management on Android</div>
+        <p class="feature-desc" data-tl="feat.desc">MetalPro puts quotes, production orders, stock and invoicing in one app — built for metalworking, tested where it matters.</p>
+        <ul class="feature-list">
+          <li data-tl="feat.li1">Quotes and work orders with PDF export</li>
+          <li data-tl="feat.li2">Client and stock management</li>
+          <li data-tl="feat.li3">Works offline, syncs automatically</li>
+          <li data-tl="feat.li4">Available on Google Play</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section class="section" id="sobre">
   <div class="wrap">
-    <div class="section-header">
+    <div class="section-header fade-up">
       <div class="sheet-num" data-tl="sheet2">SHEET 02 · ABOUT</div>
-      <h2 data-tl="about.h2">Simple software, for complex work</h2>
+      <h2 data-tl="about.h2">One product. One problem. One industry.</h2>
       <p class="section-sub" data-tl="about.sub">Each Technelabs product solves a specific problem in a specific industry — no learning curve, no bloat.</p>
     </div>
     <div class="specs-grid">
-      <div class="spec">
+      <div class="spec fade-up">
         <div class="spec-val">100%</div>
-        <h4 data-tl="spec1.h">Industrial focus</h4>
-        <p data-tl="spec1.p">No generic software adapted. Built for industry — metalworking, metalwork, mechanics, painting, maintenance and more.</p>
+        <h4 data-tl="spec1.h">Industry focus</h4>
+        <p data-tl="spec1.p">Purpose-built for industry. Each product targets one sector — metalworking, civil metalwork, maintenance, painting and more.</p>
       </div>
-      <div class="spec">
+      <div class="spec fade-up fade-up-d1">
         <div class="spec-val">Android</div>
-        <h4 data-tl="spec2.h">Ready for the shop floor</h4>
-        <p data-tl="spec2.p">Native Android apps, designed to be used in noisy environments without a reliable internet connection.</p>
+        <h4 data-tl="spec2.h">Mobile-first</h4>
+        <p data-tl="spec2.p">Native Android apps, designed to run in demanding environments — no stable internet required.</p>
       </div>
-      <div class="spec">
+      <div class="spec fade-up fade-up-d2">
         <div class="spec-val">SaaS</div>
         <h4 data-tl="spec4.h">No installation needed</h4>
         <p data-tl="spec4.p">Monthly subscription, no servers to manage, no internal IT required. Up and running from day one.</p>
@@ -235,10 +478,10 @@ html[dir="rtl"] .hero-corners::after{right:auto;left:32px;border-width:1px 1px 0
 
 <section class="cta-band bg-grid">
   <div class="wrap">
-    <div class="sheet-num" style="margin-bottom:16px" data-tl="sheet3">SHEET 03 · GET STARTED</div>
-    <h2 data-tl="cta.h2">Ready to try MetalPro?</h2>
-    <p data-tl="cta.p">Available on the Google Play Store. Install, create your workshop and start today.</p>
-    <div class="hero-actions">
+    <div class="sheet-num fade-up" style="margin-bottom:16px" data-tl="sheet3">SHEET 03 · GET STARTED</div>
+    <h2 class="fade-up fade-up-d1" data-tl="cta.h2">Ready to try MetalPro?</h2>
+    <p class="fade-up fade-up-d2" data-tl="cta.p">Available on the Google Play Store. Install, create your account and start today.</p>
+    <div class="cta-actions fade-up fade-up-d3">
       <a href="https://metalprosite.vercel.app" target="_blank" class="btn btn-primary" data-tl="cta.btn1">Learn more</a>
       <a href="mailto:info@technelabs.pt" class="btn btn-secondary" data-tl="cta.btn2">Request a demo</a>
     </div>
@@ -249,9 +492,6 @@ html[dir="rtl"] .hero-corners::after{right:auto;left:32px;border-width:1px 1px 0
   <div class="wrap footer-inner">
     <div>
       <a href="/" class="logo">
-        <svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
-          <path fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="square" d="M10 28H90 M50 28V68Q50 86 68 86H82"/>
-        </svg>
         <span class="logo-wordmark" style="font-size:17px;display:flex;align-items:center;gap:0;"><svg width="18" height="17" viewBox="0 0 100 75" style="display:inline-block;position:relative;top:-2.5px;margin-right:1px" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="square" d="M10 20H90 M50 20V55Q50 72 68 72H82"/></svg>ECHNE<span class="labs">LABS</span></span>
       </a>
       <p class="footer-copy" data-tl="footer.copy">© 2026 TECHNELABS · VILA VERDE, PORTUGAL</p>
@@ -265,12 +505,18 @@ html[dir="rtl"] .hero-corners::after{right:auto;left:32px;border-width:1px 1px 0
 </footer>
 
 <script>
+// Intersection Observer for fade-up animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
 const LANGS = {
   pt:{label:"🇵🇹 PT",dir:"ltr",t:{
     "nav.products":"Produtos","nav.about":"Sobre","nav.privacy":"Privacidade","nav.contact":"Contacto",
     "sheet0":"FOLHA 00 · TECHNELABS · REV. A",
     "hero.h1":"Identificamos problemas.<br><em>Construímos soluções.</em>",
-    "hero.sub":"A Technelabs é uma software house especializada em criar produtos que resolvem problemas concretos — de qualquer setor, em qualquer mercado.",
+    "hero.sub":"A Technelabs desenvolve software que resolve problemas específicos em indústrias específicas — ferramentas precisas, sem complexidade.",
     "hero.cta1":"Ver produtos","hero.cta2":"Contacto",
     "sheet1":"FOLHA 01 · PRODUTOS","prod.h2":"Produtos que resolvem problemas reais",
     "prod.sub":"Cada produto nasce de um problema real, testado em produção antes de chegar ao mercado.",
@@ -279,14 +525,21 @@ const LANGS = {
     "p3.desc":"CMMS para manutenção industrial — planos de manutenção preventiva, histórico de avarias e intervenções técnicas.",
     "p4.desc":"Gestão de lacagem e tratamento de superfícies — orçamentos por m², ficha técnica de produtos e controlo de qualidade.",
     "p5.desc":"CRM para equipas comerciais industriais — leads, pipeline de vendas, seguimento de propostas e relatórios.",
-    "status.dev":"Em desenvolvimento","sheet2":"FOLHA 02 · SOBRE","about.h2":"Software simples, para trabalho complexo",
+    "status.dev":"Em desenvolvimento",
+    "feat.tag":"Destaque — MetalPro",
+    "feat.title":"Gestão completa de oficina no Android",
+    "feat.desc":"O MetalPro reúne orçamentos, ordens de fabrico, stock e faturação numa só app — desenvolvido para metalomecânica, testado onde importa.",
+    "feat.li1":"Orçamentos e ordens de fabrico com exportação PDF",
+    "feat.li2":"Gestão de clientes e stock",
+    "feat.li3":"Funciona offline, sincroniza automaticamente",
+    "feat.li4":"Disponível na Google Play",
+    "sheet2":"FOLHA 02 · SOBRE","about.h2":"Um produto. Um problema. Uma indústria.",
     "about.sub":"Cada produto Technelabs resolve um problema específico de um ramo — sem curva de aprendizagem, sem funcionalidades a mais.",
-    "spec1.h":"Foco industrial","spec1.p":"Nenhum produto genérico adaptado. Desenhado para a indústria — metalomecânica, serralharia, mecânica, pintura, manutenção e mais.",
-    "spec2.h":"Pronto para a oficina","spec2.p":"Apps nativas para Android, pensadas para ambientes ruidosos e sem internet estável.",
-    
+    "spec1.h":"Foco na indústria","spec1.p":"Desenvolvido para a indústria. Cada produto foca um setor — metalomecânica, serralharia, manutenção, pintura e mais.",
+    "spec2.h":"Mobile-first","spec2.p":"Apps nativas para Android, pensadas para ambientes exigentes — sem necessidade de internet estável.",
     "spec4.h":"Sem instalações","spec4.p":"Subscrição mensal, sem servidores para gerir. Começa a funcionar no primeiro dia.",
     "sheet3":"FOLHA 03 · COMEÇAR","cta.h2":"Pronto para experimentar o MetalPro?",
-    "cta.p":"Disponível na Google Play Store. Instala, cria a tua oficina e começa hoje.",
+    "cta.p":"Disponível na Google Play Store. Instala, cria a tua conta e começa hoje.",
     "cta.btn1":"Saber mais","cta.btn2":"Pedir demonstração",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Produtos"
   }},
@@ -294,7 +547,7 @@ const LANGS = {
     "nav.products":"Products","nav.about":"About","nav.privacy":"Privacy","nav.contact":"Contact",
     "sheet0":"SHEET 00 · TECHNELABS · REV. A",
     "hero.h1":"We identify problems.<br><em>We build solutions.</em>",
-    "hero.sub":"Technelabs is a software house that builds products solving real-world problems — from the factory floor to the manager's desk.",
+    "hero.sub":"Technelabs builds software that solves specific problems in specific industries — precise tools, without complexity.",
     "hero.cta1":"See products","hero.cta2":"Contact",
     "sheet1":"SHEET 01 · PRODUCTS","prod.h2":"Products that solve real problems",
     "prod.sub":"Every product is born from a real problem, tested in production before reaching the market.",
@@ -303,14 +556,21 @@ const LANGS = {
     "p3.desc":"CMMS for industrial maintenance — preventive maintenance plans, breakdown history and technical interventions.",
     "p4.desc":"Lacquering and surface treatment management — per-m² quotes, product data sheets and quality control.",
     "p5.desc":"CRM for industrial sales teams — leads, sales pipeline, proposal tracking and reports.",
-    "status.dev":"In development","sheet2":"SHEET 02 · ABOUT","about.h2":"Simple software, for complex work",
+    "status.dev":"In development",
+    "feat.tag":"Featured — MetalPro",
+    "feat.title":"Full workshop management on Android",
+    "feat.desc":"MetalPro puts quotes, production orders, stock and invoicing in one app — built for metalworking, tested where it matters.",
+    "feat.li1":"Quotes and work orders with PDF export",
+    "feat.li2":"Client and stock management",
+    "feat.li3":"Works offline, syncs automatically",
+    "feat.li4":"Available on Google Play",
+    "sheet2":"SHEET 02 · ABOUT","about.h2":"One product. One problem. One industry.",
     "about.sub":"Each Technelabs product solves a specific problem in a specific industry — no learning curve, no bloat.",
-    "spec1.h":"Industrial focus","spec1.p":"No generic software adapted. Built for industry — metalworking, metalwork, mechanics, painting, maintenance and more.",
-    "spec2.h":"Ready for the shop floor","spec2.p":"Native Android apps, designed to be used in noisy environments without a reliable internet connection.",
-    
+    "spec1.h":"Industry focus","spec1.p":"Purpose-built for industry. Each product targets one sector — metalworking, civil metalwork, maintenance, painting and more.",
+    "spec2.h":"Mobile-first","spec2.p":"Native Android apps, designed to run in demanding environments — no stable internet required.",
     "spec4.h":"No installation needed","spec4.p":"Monthly subscription, no servers to manage. Up and running from day one.",
     "sheet3":"SHEET 03 · GET STARTED","cta.h2":"Ready to try MetalPro?",
-    "cta.p":"Available on the Google Play Store. Install, create your workshop and start today.",
+    "cta.p":"Available on the Google Play Store. Install, create your account and start today.",
     "cta.btn1":"Learn more","cta.btn2":"Request a demo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Products"
   }},
@@ -318,7 +578,7 @@ const LANGS = {
     "nav.products":"Productos","nav.about":"Sobre","nav.privacy":"Privacidad","nav.contact":"Contacto",
     "sheet0":"HOJA 00 · TECHNELABS · REV. A",
     "hero.h1":"Identificamos problemas.<br><em>Construimos soluciones.</em>",
-    "hero.sub":"Technelabs es una software house especializada en crear productos que resuelven problemas concretos — de cualquier sector, en cualquier mercado.",
+    "hero.sub":"Technelabs desarrolla software que resuelve problemas específicos en industrias específicas — herramientas precisas, sin complejidad.",
     "hero.cta1":"Ver productos","hero.cta2":"Contacto",
     "sheet1":"HOJA 01 · PRODUCTOS","prod.h2":"Productos que resuelven problemas reales",
     "prod.sub":"Cada producto nace de un problema real, probado en producción antes de llegar al mercado.",
@@ -327,14 +587,21 @@ const LANGS = {
     "p3.desc":"CMMS para mantenimiento industrial — planes de mantenimiento preventivo, historial de averías e intervenciones técnicas.",
     "p4.desc":"Gestión de lacado y tratamiento de superficies — presupuestos por m², fichas técnicas y control de calidad.",
     "p5.desc":"CRM para equipos comerciales industriales — leads, pipeline de ventas, seguimiento de propuestas e informes.",
-    "status.dev":"En desarrollo","sheet2":"HOJA 02 · SOBRE","about.h2":"Software simple, para trabajo complejo",
+    "status.dev":"En desarrollo",
+    "feat.tag":"Destacado — MetalPro",
+    "feat.title":"Gestión completa del taller en Android",
+    "feat.desc":"MetalPro reúne presupuestos, órdenes de fabricación, stock y facturación en una sola app — desarrollado para metalurgia, probado donde importa.",
+    "feat.li1":"Presupuestos y órdenes de fabricación con exportación PDF",
+    "feat.li2":"Gestión de clientes y stock",
+    "feat.li3":"Funciona sin internet, sincroniza automáticamente",
+    "feat.li4":"Disponible en Google Play",
+    "sheet2":"HOJA 02 · SOBRE","about.h2":"Un producto. Un problema. Una industria.",
     "about.sub":"Cada producto Technelabs resuelve un problema específico de un sector — sin curva de aprendizaje, sin funcionalidades de más.",
-    "spec1.h":"Foco industrial","spec1.p":"Sin software genérico adaptado. Diseñado para la industria — metalurgia, cerrajería, mecánica, pintura, mantenimiento y más.",
-    "spec2.h":"Listo para el taller","spec2.p":"Apps nativas para Android, pensadas para entornos ruidosos y sin internet estable.",
-    
+    "spec1.h":"Foco en la industria","spec1.p":"Desarrollado para la industria. Cada producto se enfoca en un sector — metalurgia, cerrajería, mantenimiento, pintura y más.",
+    "spec2.h":"Mobile-first","spec2.p":"Apps nativas para Android, pensadas para entornos exigentes — sin necesidad de internet estable.",
     "spec4.h":"Sin instalaciones","spec4.p":"Suscripción mensual, sin servidores que gestionar. Funciona desde el primer día.",
     "sheet3":"HOJA 03 · EMPEZAR","cta.h2":"¿Listo para probar MetalPro?",
-    "cta.p":"Disponible en Google Play Store. Instala, crea tu taller y empieza hoy.",
+    "cta.p":"Disponible en Google Play Store. Instala, crea tu cuenta y empieza hoy.",
     "cta.btn1":"Saber más","cta.btn2":"Solicitar demo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Productos"
   }},
@@ -342,7 +609,7 @@ const LANGS = {
     "nav.products":"Produits","nav.about":"À propos","nav.privacy":"Confidentialité","nav.contact":"Contact",
     "sheet0":"FEUILLE 00 · TECHNELABS · RÉV. A",
     "hero.h1":"Nous identifions les problèmes.<br><em>Nous construisons les solutions.</em>",
-    "hero.sub":"Technelabs est une software house spécialisée dans la création de produits qui résolvent des problèmes concrets — dans tout secteur, sur tout marché.",
+    "hero.sub":"Technelabs développe des logiciels qui résolvent des problèmes spécifiques dans des industries spécifiques — des outils précis, sans complexité.",
     "hero.cta1":"Voir les produits","hero.cta2":"Contact",
     "sheet1":"FEUILLE 01 · PRODUITS","prod.h2":"Des produits qui résolvent de vrais problèmes",
     "prod.sub":"Chaque produit naît d'un problème réel, testé en production avant d'arriver sur le marché.",
@@ -351,14 +618,21 @@ const LANGS = {
     "p3.desc":"GMAO pour la maintenance industrielle — plans de maintenance préventive, historique de pannes et interventions techniques.",
     "p4.desc":"Gestion de laquage et traitement de surface — devis au m², fiches techniques et contrôle qualité.",
     "p5.desc":"CRM pour équipes commerciales industrielles — leads, pipeline de ventes, suivi de propositions et rapports.",
-    "status.dev":"En développement","sheet2":"FEUILLE 02 · À PROPOS","about.h2":"Logiciel simple, pour un travail complexe",
+    "status.dev":"En développement",
+    "feat.tag":"À la une — MetalPro",
+    "feat.title":"Gestion complète de l'atelier sur Android",
+    "feat.desc":"MetalPro réunit devis, ordres de fabrication, stock et facturation dans une seule app — conçu pour la métallurgie, testé là où ça compte.",
+    "feat.li1":"Devis et ordres de fabrication avec export PDF",
+    "feat.li2":"Gestion des clients et du stock",
+    "feat.li3":"Fonctionne hors ligne, synchronisation automatique",
+    "feat.li4":"Disponible sur Google Play",
+    "sheet2":"FEUILLE 02 · À PROPOS","about.h2":"Un produit. Un problème. Un secteur.",
     "about.sub":"Chaque produit Technelabs résout un problème spécifique dans un secteur — sans courbe d'apprentissage, sans fonctionnalités superflues.",
-    "spec1.h":"Focus industriel","spec1.p":"Aucun logiciel générique adapté. Conçu pour l'industrie — métallurgie, serrurerie, mécanique, peinture, maintenance et plus.",
-    "spec2.h":"Prêt pour l'atelier","spec2.p":"Apps Android natives, pensées pour les environnements bruyants et sans internet stable.",
-    
+    "spec1.h":"Focus industriel","spec1.p":"Conçu pour l'industrie. Chaque produit cible un secteur — métallurgie, serrurerie, maintenance, peinture et plus.",
+    "spec2.h":"Mobile-first","spec2.p":"Apps Android natives, pensées pour les environnements exigeants — sans internet stable requis.",
     "spec4.h":"Sans installation","spec4.p":"Abonnement mensuel, sans serveurs à gérer. Opérationnel dès le premier jour.",
     "sheet3":"FEUILLE 03 · COMMENCER","cta.h2":"Prêt à essayer MetalPro ?",
-    "cta.p":"Disponible sur Google Play Store. Installez, créez votre atelier et commencez aujourd'hui.",
+    "cta.p":"Disponible sur Google Play Store. Installez, créez votre compte et commencez aujourd'hui.",
     "cta.btn1":"En savoir plus","cta.btn2":"Demander une démo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Produits"
   }},
@@ -366,7 +640,7 @@ const LANGS = {
     "nav.products":"Produkte","nav.about":"Über uns","nav.privacy":"Datenschutz","nav.contact":"Kontakt",
     "sheet0":"BLATT 00 · TECHNELABS · REV. A",
     "hero.h1":"Wir identifizieren Probleme.<br><em>Wir bauen Lösungen.</em>",
-    "hero.sub":"Technelabs ist ein Softwarehaus, das Produkte entwickelt, die reale Probleme lösen — in jeder Branche, auf jedem Markt.",
+    "hero.sub":"Technelabs entwickelt Software, die spezifische Probleme in spezifischen Branchen löst — präzise Werkzeuge, ohne Komplexität.",
     "hero.cta1":"Produkte ansehen","hero.cta2":"Kontakt",
     "sheet1":"BLATT 01 · PRODUKTE","prod.h2":"Produkte, die echte Probleme lösen",
     "prod.sub":"Jedes Produkt entsteht aus einem echten Problem, in der Produktion getestet, bevor es auf den Markt kommt.",
@@ -375,14 +649,21 @@ const LANGS = {
     "p3.desc":"CMMS für industrielle Wartung — Präventivwartungspläne, Störungshistorie und technische Eingriffe.",
     "p4.desc":"Lackier- und Oberflächenbehandlungsmanagement — Angebote pro m², Produktdatenblätter und Qualitätskontrolle.",
     "p5.desc":"CRM für industrielle Vertriebsteams — Leads, Vertriebspipeline, Angebotsverfolgung und Berichte.",
-    "status.dev":"In Entwicklung","sheet2":"BLATT 02 · ÜBER UNS","about.h2":"Einfache Software für komplexe Arbeit",
+    "status.dev":"In Entwicklung",
+    "feat.tag":"Highlight — MetalPro",
+    "feat.title":"Vollständiges Werkstattmanagement auf Android",
+    "feat.desc":"MetalPro vereint Angebote, Fertigungsaufträge, Lager und Abrechnung in einer App — für Metallbearbeitung entwickelt, dort getestet, wo es zählt.",
+    "feat.li1":"Angebote und Fertigungsaufträge mit PDF-Export",
+    "feat.li2":"Kunden- und Lagerverwaltung",
+    "feat.li3":"Offline-Betrieb, automatische Synchronisation",
+    "feat.li4":"Im Google Play verfügbar",
+    "sheet2":"BLATT 02 · ÜBER UNS","about.h2":"Ein Produkt. Ein Problem. Eine Branche.",
     "about.sub":"Jedes Technelabs-Produkt löst ein spezifisches Problem in einer bestimmten Branche — keine Lernkurve, kein Ballast.",
-    "spec1.h":"Industriefokus","spec1.p":"Keine generische angepasste Software. Entwickelt für die Industrie — Metallbearbeitung, Stahlbau, Mechanik, Lackierung, Wartung und mehr.",
-    "spec2.h":"Bereit für die Werkstatt","spec2.p":"Native Android-Apps, für laute Umgebungen ohne stabiles Internet konzipiert.",
-    
+    "spec1.h":"Industriefokus","spec1.p":"Für die Industrie entwickelt. Jedes Produkt fokussiert eine Branche — Metallbearbeitung, Stahlbau, Wartung, Lackierung und mehr.",
+    "spec2.h":"Mobile-first","spec2.p":"Native Android-Apps, für anspruchsvolle Umgebungen konzipiert — kein stabiles Internet erforderlich.",
     "spec4.h":"Keine Installation nötig","spec4.p":"Monatliches Abonnement, keine Server zu verwalten. Ab dem ersten Tag einsatzbereit.",
     "sheet3":"BLATT 03 · STARTEN","cta.h2":"Bereit, MetalPro auszuprobieren?",
-    "cta.p":"Verfügbar im Google Play Store. Installieren, Werkstatt erstellen und heute starten.",
+    "cta.p":"Verfügbar im Google Play Store. Installieren, Konto erstellen und heute starten.",
     "cta.btn1":"Mehr erfahren","cta.btn2":"Demo anfragen",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Produkte"
   }},
@@ -390,7 +671,7 @@ const LANGS = {
     "nav.products":"Producten","nav.about":"Over ons","nav.privacy":"Privacy","nav.contact":"Contact",
     "sheet0":"BLAD 00 · TECHNELABS · REV. A",
     "hero.h1":"Wij identificeren problemen.<br><em>Wij bouwen oplossingen.</em>",
-    "hero.sub":"Technelabs is een softwarehuis dat producten bouwt die echte problemen oplossen — in elke sector, op elke markt.",
+    "hero.sub":"Technelabs ontwikkelt software die specifieke problemen in specifieke industrieën oplost — nauwkeurige tools, zonder complexiteit.",
     "hero.cta1":"Producten bekijken","hero.cta2":"Contact",
     "sheet1":"BLAD 01 · PRODUCTEN","prod.h2":"Producten die echte problemen oplossen",
     "prod.sub":"Elk product komt voort uit een echt probleem, getest in productie voor het op de markt komt.",
@@ -399,14 +680,21 @@ const LANGS = {
     "p3.desc":"CMMS voor industrieel onderhoud — preventieve onderhoudsplannen, storingshistorie en technische interventies.",
     "p4.desc":"Beheer van lakken en oppervlaktebehandeling — offertes per m², productgegevensbladen en kwaliteitscontrole.",
     "p5.desc":"CRM voor industriële verkoopteams — leads, verkooppijplijn, offerte-opvolging en rapporten.",
-    "status.dev":"In ontwikkeling","sheet2":"BLAD 02 · OVER ONS","about.h2":"Eenvoudige software, voor complex werk",
+    "status.dev":"In ontwikkeling",
+    "feat.tag":"Uitgelicht — MetalPro",
+    "feat.title":"Volledig werkplaatsbeheer op Android",
+    "feat.desc":"MetalPro bundelt offertes, productieorders, voorraad en facturering in één app — gebouwd voor metaalbewerking, getest waar het telt.",
+    "feat.li1":"Offertes en productieorders met PDF-export",
+    "feat.li2":"Klanten- en voorraadbeheer",
+    "feat.li3":"Werkt offline, synchroniseert automatisch",
+    "feat.li4":"Beschikbaar op Google Play",
+    "sheet2":"BLAD 02 · OVER ONS","about.h2":"Één product. Één probleem. Één sector.",
     "about.sub":"Elk Technelabs-product lost een specifiek probleem op in een specifieke sector — geen leercurve, geen overbodige functies.",
-    "spec1.h":"Industriefocus","spec1.p":"Geen generieke aangepaste software. Gebouwd voor de industrie — metaalbewerking, constructie, mechanica, lakken, onderhoud en meer.",
-    "spec2.h":"Klaar voor de werkplaats","spec2.p":"Native Android-apps, ontworpen voor lawaaierige omgevingen zonder stabiel internet.",
-    
+    "spec1.h":"Industriefocus","spec1.p":"Ontwikkeld voor de industrie. Elk product richt zich op één sector — metaalbewerking, constructie, onderhoud, lakken en meer.",
+    "spec2.h":"Mobile-first","spec2.p":"Native Android-apps, ontworpen voor veeleisende omgevingen — geen stabiel internet vereist.",
     "spec4.h":"Geen installatie nodig","spec4.p":"Maandelijks abonnement, geen servers te beheren. Vanaf de eerste dag operationeel.",
     "sheet3":"BLAD 03 · STARTEN","cta.h2":"Klaar om MetalPro te proberen?",
-    "cta.p":"Beschikbaar in de Google Play Store. Installeer, maak je werkplaats aan en begin vandaag.",
+    "cta.p":"Beschikbaar in de Google Play Store. Installeer, maak een account aan en begin vandaag.",
     "cta.btn1":"Meer info","cta.btn2":"Demo aanvragen",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Producten"
   }},
@@ -414,7 +702,7 @@ const LANGS = {
     "nav.products":"Prodotti","nav.about":"Chi siamo","nav.privacy":"Privacy","nav.contact":"Contatto",
     "sheet0":"FOGLIO 00 · TECHNELABS · REV. A",
     "hero.h1":"Identifichiamo i problemi.<br><em>Costruiamo le soluzioni.</em>",
-    "hero.sub":"Technelabs è una software house specializzata nella creazione di prodotti che risolvono problemi concreti — in qualsiasi settore, in qualsiasi mercato.",
+    "hero.sub":"Technelabs sviluppa software che risolve problemi specifici in settori specifici — strumenti precisi, senza complessità.",
     "hero.cta1":"Vedi prodotti","hero.cta2":"Contatto",
     "sheet1":"FOGLIO 01 · PRODOTTI","prod.h2":"Prodotti che risolvono problemi reali",
     "prod.sub":"Ogni prodotto nasce da un problema reale, testato in produzione prima di arrivare sul mercato.",
@@ -423,14 +711,21 @@ const LANGS = {
     "p3.desc":"CMMS per la manutenzione industriale — piani di manutenzione preventiva, storico guasti e interventi tecnici.",
     "p4.desc":"Gestione di verniciatura e trattamento superfici — preventivi per m², schede tecniche e controllo qualità.",
     "p5.desc":"CRM per team di vendita industriali — lead, pipeline vendite, follow-up proposte e report.",
-    "status.dev":"In sviluppo","sheet2":"FOGLIO 02 · CHI SIAMO","about.h2":"Software semplice, per lavoro complesso",
+    "status.dev":"In sviluppo",
+    "feat.tag":"In evidenza — MetalPro",
+    "feat.title":"Gestione completa dell'officina su Android",
+    "feat.desc":"MetalPro riunisce preventivi, ordini di produzione, magazzino e fatturazione in un'unica app — sviluppato per la lavorazione metalli, testato dove conta.",
+    "feat.li1":"Preventivi e ordini di produzione con export PDF",
+    "feat.li2":"Gestione clienti e magazzino",
+    "feat.li3":"Funziona offline, sincronizzazione automatica",
+    "feat.li4":"Disponibile su Google Play",
+    "sheet2":"FOGLIO 02 · CHI SIAMO","about.h2":"Un prodotto. Un problema. Un settore.",
     "about.sub":"Ogni prodotto Technelabs risolve un problema specifico in un settore specifico — nessuna curva di apprendimento, nessuna funzione in più.",
-    "spec1.h":"Focus industriale","spec1.p":"Nessun software generico adattato. Progettato per l'industria — lavorazione metalli, carpenteria, meccanica, verniciatura, manutenzione e altro.",
-    "spec2.h":"Pronto per l'officina","spec2.p":"App Android native, pensate per ambienti rumorosi e senza connessione internet stabile.",
-    
+    "spec1.h":"Focus industriale","spec1.p":"Sviluppato per l'industria. Ogni prodotto si concentra su un settore — lavorazione metalli, carpenteria, manutenzione, verniciatura e altro.",
+    "spec2.h":"Mobile-first","spec2.p":"App Android native, progettate per ambienti impegnativi — senza connessione internet stabile.",
     "spec4.h":"Nessuna installazione","spec4.p":"Abbonamento mensile, nessun server da gestire. Operativo dal primo giorno.",
     "sheet3":"FOGLIO 03 · INIZIA","cta.h2":"Pronto a provare MetalPro?",
-    "cta.p":"Disponibile su Google Play Store. Installa, crea il tuo laboratorio e inizia oggi.",
+    "cta.p":"Disponibile su Google Play Store. Installa, crea il tuo account e inizia oggi.",
     "cta.btn1":"Scopri di più","cta.btn2":"Richiedi demo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Prodotti"
   }},
@@ -438,7 +733,7 @@ const LANGS = {
     "nav.products":"Produkter","nav.about":"Om oss","nav.privacy":"Integritet","nav.contact":"Kontakt",
     "sheet0":"BLAD 00 · TECHNELABS · REV. A",
     "hero.h1":"Vi identifierar problem.<br><em>Vi bygger lösningar.</em>",
-    "hero.sub":"Technelabs är ett mjukvaruhus som bygger produkter som löser verkliga problem — inom alla branscher, på alla marknader.",
+    "hero.sub":"Technelabs utvecklar programvara som löser specifika problem i specifika branscher — precisa verktyg, utan komplexitet.",
     "hero.cta1":"Se produkter","hero.cta2":"Kontakt",
     "sheet1":"BLAD 01 · PRODUKTER","prod.h2":"Produkter som löser verkliga problem",
     "prod.sub":"Varje produkt föds ur ett verkligt problem, testat i produktion innan det når marknaden.",
@@ -447,14 +742,21 @@ const LANGS = {
     "p3.desc":"CMMS för industriellt underhåll — förebyggande underhållsplaner, felhistorik och tekniska ingrepp.",
     "p4.desc":"Hantering av lackering och ytbehandling — offerter per m², produktdatablad och kvalitetskontroll.",
     "p5.desc":"CRM för industriella säljteam — leads, försäljningspipeline, offertuppföljning och rapporter.",
-    "status.dev":"Under utveckling","sheet2":"BLAD 02 · OM OSS","about.h2":"Enkel programvara för komplext arbete",
+    "status.dev":"Under utveckling",
+    "feat.tag":"Utvalt — MetalPro",
+    "feat.title":"Komplett verkstadshantering på Android",
+    "feat.desc":"MetalPro samlar offerter, tillverkningsorder, lager och fakturering i en app — byggd för metallbearbetning, testad där det spelar roll.",
+    "feat.li1":"Offerter och tillverkningsorder med PDF-export",
+    "feat.li2":"Kund- och lagerhantering",
+    "feat.li3":"Fungerar offline, synkroniserar automatiskt",
+    "feat.li4":"Finns på Google Play",
+    "sheet2":"BLAD 02 · OM OSS","about.h2":"En produkt. Ett problem. En bransch.",
     "about.sub":"Varje Technelabs-produkt löser ett specifikt problem i en specifik bransch — ingen inlärningskurva, inget onödigt.",
-    "spec1.h":"Industriellt fokus","spec1.p":"Ingen generisk anpassad programvara. Byggd för industrin — metallbearbetning, stålkonstruktion, mekanik, lackering, underhåll och mer.",
-    "spec2.h":"Redo för verkstaden","spec2.p":"Inbyggda Android-appar, utformade för bullriga miljöer utan stabil internetanslutning.",
-    
+    "spec1.h":"Industriellt fokus","spec1.p":"Byggt för industrin. Varje produkt fokuserar på en bransch — metallbearbetning, stålkonstruktion, underhåll, lackering och mer.",
+    "spec2.h":"Mobile-first","spec2.p":"Inbyggda Android-appar, utformade för krävande miljöer — inget stabilt internet krävs.",
     "spec4.h":"Ingen installation behövs","spec4.p":"Månatlig prenumeration, inga servrar att hantera. Igång från första dagen.",
     "sheet3":"BLAD 03 · BÖRJA","cta.h2":"Redo att prova MetalPro?",
-    "cta.p":"Tillgänglig på Google Play Store. Installera, skapa din verkstad och börja idag.",
+    "cta.p":"Tillgänglig på Google Play Store. Installera, skapa ett konto och börja idag.",
     "cta.btn1":"Läs mer","cta.btn2":"Begär demo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Produkter"
   }},
@@ -462,7 +764,7 @@ const LANGS = {
     "nav.products":"Produkter","nav.about":"Om oss","nav.privacy":"Personvern","nav.contact":"Kontakt",
     "sheet0":"ARK 00 · TECHNELABS · REV. A",
     "hero.h1":"Vi identifiserer problemer.<br><em>Vi bygger løsninger.</em>",
-    "hero.sub":"Technelabs er et programvarehus som bygger produkter som løser virkelige problemer — i alle bransjer, på alle markeder.",
+    "hero.sub":"Technelabs utvikler programvare som løser spesifikke problemer i spesifikke bransjer — presise verktøy, uten kompleksitet.",
     "hero.cta1":"Se produkter","hero.cta2":"Kontakt",
     "sheet1":"ARK 01 · PRODUKTER","prod.h2":"Produkter som løser virkelige problemer",
     "prod.sub":"Hvert produkt er født fra et reelt problem, testet i produksjon før det når markedet.",
@@ -471,14 +773,21 @@ const LANGS = {
     "p3.desc":"CMMS for industrielt vedlikehold — forebyggende vedlikeholdsplaner, feilhistorikk og tekniske inngrep.",
     "p4.desc":"Administrasjon av lakkering og overflatebehandling — tilbud per m², produktdatablad og kvalitetskontroll.",
     "p5.desc":"CRM for industrielle salgsteam — leads, salgspipeline, tilbudsoppfølging og rapporter.",
-    "status.dev":"Under utvikling","sheet2":"ARK 02 · OM OSS","about.h2":"Enkel programvare for komplekst arbeid",
+    "status.dev":"Under utvikling",
+    "feat.tag":"Fremhevet — MetalPro",
+    "feat.title":"Komplett verkstedsadministrasjon på Android",
+    "feat.desc":"MetalPro samler tilbud, produksjonsordrer, lager og fakturering i én app — bygget for metallbearbeiding, testet der det teller.",
+    "feat.li1":"Tilbud og produksjonsordrer med PDF-eksport",
+    "feat.li2":"Kunde- og lagerstyring",
+    "feat.li3":"Fungerer offline, synkroniseres automatisk",
+    "feat.li4":"Tilgjengelig på Google Play",
+    "sheet2":"ARK 02 · OM OSS","about.h2":"Ett produkt. Ett problem. En bransje.",
     "about.sub":"Hvert Technelabs-produkt løser et spesifikt problem i en spesifikk bransje — ingen læringskurve, ingen unødvendige funksjoner.",
-    "spec1.h":"Industrielt fokus","spec1.p":"Ingen generisk tilpasset programvare. Bygget for industrien — metallbearbeiding, stålkonstruksjon, mekanikk, lakkering, vedlikehold og mer.",
-    "spec2.h":"Klar for verkstedet","spec2.p":"Native Android-apper, designet for støyende miljøer uten stabil internettforbindelse.",
-    
+    "spec1.h":"Industrielt fokus","spec1.p":"Utviklet for industrien. Hvert produkt fokuserer på én bransje — metallbearbeiding, stålkonstruksjon, vedlikehold, lakkering og mer.",
+    "spec2.h":"Mobile-first","spec2.p":"Native Android-apper, designet for krevende miljøer — uten stabilt internett.",
     "spec4.h":"Ingen installasjon nødvendig","spec4.p":"Månedlig abonnement, ingen servere å administrere. Operativt fra første dag.",
     "sheet3":"ARK 03 · KOMME I GANG","cta.h2":"Klar til å prøve MetalPro?",
-    "cta.p":"Tilgjengelig på Google Play Store. Installer, opprett verkstedet ditt og start i dag.",
+    "cta.p":"Tilgjengelig på Google Play Store. Installer, opprett en konto og start i dag.",
     "cta.btn1":"Les mer","cta.btn2":"Be om demo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Produkter"
   }},
@@ -486,7 +795,7 @@ const LANGS = {
     "nav.products":"Tuotteet","nav.about":"Meistä","nav.privacy":"Tietosuoja","nav.contact":"Yhteystiedot",
     "sheet0":"ARKKI 00 · TECHNELABS · REV. A",
     "hero.h1":"Tunnistamme ongelmat.<br><em>Rakennamme ratkaisut.</em>",
-    "hero.sub":"Technelabs on ohjelmistotalo, joka rakentaa tuotteita todellisten ongelmien ratkaisemiseksi — kaikilla toimialoilla, kaikilla markkinoilla.",
+    "hero.sub":"Technelabs kehittää ohjelmistoja, jotka ratkaisevat tiettyjä ongelmia tietyillä toimialoilla — tarkkoja työkaluja ilman monimutkaisuutta.",
     "hero.cta1":"Katso tuotteet","hero.cta2":"Yhteystiedot",
     "sheet1":"ARKKI 01 · TUOTTEET","prod.h2":"Tuotteet, jotka ratkaisevat todellisia ongelmia",
     "prod.sub":"Jokainen tuote syntyy todellisesta ongelmasta, testattuna tuotannossa ennen markkinoille tuloa.",
@@ -495,14 +804,21 @@ const LANGS = {
     "p3.desc":"CMMS teollisuuden kunnossapitoon — ennaltaehkäisevät huoltosuunnitelmat, vikahistoria ja tekniset toimenpiteet.",
     "p4.desc":"Maalauksen ja pintakäsittelyn hallinta — tarjoukset per m², tuotetietolomakkeet ja laadunvalvonta.",
     "p5.desc":"CRM teollisuuden myyntitiimeille — liidit, myyntiputki, tarjousten seuranta ja raportit.",
-    "status.dev":"Kehitteillä","sheet2":"ARKKI 02 · MEISTÄ","about.h2":"Yksinkertainen ohjelmisto monimutkaiseen työhön",
+    "status.dev":"Kehitteillä",
+    "feat.tag":"Esitelty — MetalPro",
+    "feat.title":"Täydellinen verstashallinta Androidilla",
+    "feat.desc":"MetalPro yhdistää tarjoukset, tuotantotilaukset, varaston ja laskutuksen yhteen sovellukseen — kehitetty metallintyöstöön, testattu siellä missä se merkitsee.",
+    "feat.li1":"Tarjoukset ja tuotantotilaukset PDF-viennillä",
+    "feat.li2":"Asiakas- ja varastohallinta",
+    "feat.li3":"Toimii offline, synkronoi automaattisesti",
+    "feat.li4":"Saatavilla Google Playssa",
+    "sheet2":"ARKKI 02 · MEISTÄ","about.h2":"Yksi tuote. Yksi ongelma. Yksi toimiala.",
     "about.sub":"Jokainen Technelabs-tuote ratkaisee tietyn toimialan tietyn ongelman — ei oppimisvaikeudet, ei turhia ominaisuuksia.",
-    "spec1.h":"Teollisuusfokus","spec1.p":"Ei geneeristä sovitettua ohjelmistoa. Rakennettu teollisuudelle — metallityö, teräsrakentaminen, mekaniikka, maalaus, kunnossapito ja muuta.",
-    "spec2.h":"Valmis verstaille","spec2.p":"Natiivia Android-sovelluksia, suunniteltu meluisiin ympäristöihin ilman vakaata internetyhteyttä.",
-    
+    "spec1.h":"Teollisuusfokus","spec1.p":"Kehitetty teollisuudelle. Jokainen tuote kohdistuu yhteen sektoriin — metallintyöstö, teräsrakentaminen, kunnossapito, maalaus ja enemmän.",
+    "spec2.h":"Mobile-first","spec2.p":"Natiivia Android-sovelluksia, suunniteltu vaativiin ympäristöihin — ei vaadi vakaata internetyhteyttä.",
     "spec4.h":"Ei asennusta tarvita","spec4.p":"Kuukausitilaus, ei palvelimia hallittavaksi. Toimintavalmiina ensimmäisestä päivästä.",
     "sheet3":"ARKKI 03 · ALOITA","cta.h2":"Valmis kokeilemaan MetalProta?",
-    "cta.p":"Saatavilla Google Play Storessa. Asenna, luo verstasi ja aloita tänään.",
+    "cta.p":"Saatavilla Google Play Storessa. Asenna, luo tili ja aloita tänään.",
     "cta.btn1":"Lue lisää","cta.btn2":"Pyydä demo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Tuotteet"
   }},
@@ -510,7 +826,7 @@ const LANGS = {
     "nav.products":"Produkty","nav.about":"O nas","nav.privacy":"Prywatność","nav.contact":"Kontakt",
     "sheet0":"ARKUSZ 00 · TECHNELABS · REV. A",
     "hero.h1":"Identyfikujemy problemy.<br><em>Budujemy rozwiązania.</em>",
-    "hero.sub":"Technelabs to software house specjalizujący się w tworzeniu produktów rozwiązujących konkretne problemy — w każdej branży, na każdym rynku.",
+    "hero.sub":"Technelabs tworzy oprogramowanie rozwiązujące konkretne problemy w konkretnych branżach — precyzyjne narzędzia, bez zbędnej złożoności.",
     "hero.cta1":"Zobacz produkty","hero.cta2":"Kontakt",
     "sheet1":"ARKUSZ 01 · PRODUKTY","prod.h2":"Produkty rozwiązujące prawdziwe problemy",
     "prod.sub":"Każdy produkt rodzi się z prawdziwego problemu, przetestowanego w produkcji przed wejściem na rynek.",
@@ -519,14 +835,21 @@ const LANGS = {
     "p3.desc":"CMMS dla przemysłowego utrzymania ruchu — plany konserwacji zapobiegawczej, historia awarii i interwencje techniczne.",
     "p4.desc":"Zarządzanie lakierowaniem i obróbką powierzchni — wyceny za m², karty techniczne i kontrola jakości.",
     "p5.desc":"CRM dla przemysłowych zespołów sprzedażowych — leady, pipeline sprzedaży, śledzenie propozycji i raporty.",
-    "status.dev":"W trakcie rozwoju","sheet2":"ARKUSZ 02 · O NAS","about.h2":"Proste oprogramowanie do złożonej pracy",
+    "status.dev":"W trakcie rozwoju",
+    "feat.tag":"Wyróżniony — MetalPro",
+    "feat.title":"Pełne zarządzanie warsztatem na Androidzie",
+    "feat.desc":"MetalPro łączy wyceny, zlecenia produkcyjne, magazyn i fakturowanie w jednej aplikacji — stworzony dla obróbki metali, przetestowany tam gdzie to ważne.",
+    "feat.li1":"Wyceny i zlecenia produkcyjne z eksportem PDF",
+    "feat.li2":"Zarządzanie klientami i magazynem",
+    "feat.li3":"Działa offline, synchronizuje automatycznie",
+    "feat.li4":"Dostępny na Google Play",
+    "sheet2":"ARKUSZ 02 · O NAS","about.h2":"Jeden produkt. Jeden problem. Jedna branża.",
     "about.sub":"Każdy produkt Technelabs rozwiązuje konkretny problem w konkretnej branży — bez krzywej uczenia się, bez zbędnych funkcji.",
-    "spec1.h":"Fokus na przemysł","spec1.p":"Żadnego zaadaptowanego oprogramowania ogólnego. Zbudowane dla przemysłu — obróbka metali, ślusarstwo, mechanika, lakierowanie, utrzymanie ruchu i więcej.",
-    "spec2.h":"Gotowy na warsztat","spec2.p":"Natywne aplikacje Android, zaprojektowane do użytku w głośnych środowiskach bez stabilnego internetu.",
-    
+    "spec1.h":"Fokus na przemysł","spec1.p":"Opracowany dla przemysłu. Każdy produkt skupia się na jednym sektorze — obróbka metali, ślusarstwo, utrzymanie ruchu, lakierowanie i więcej.",
+    "spec2.h":"Mobile-first","spec2.p":"Natywne aplikacje Android, zaprojektowane do użytku w wymagających środowiskach — bez stabilnego internetu.",
     "spec4.h":"Bez instalacji","spec4.p":"Miesięczna subskrypcja, bez serwerów do zarządzania. Gotowy od pierwszego dnia.",
     "sheet3":"ARKUSZ 03 · ZACZNIJ","cta.h2":"Gotowy, by wypróbować MetalPro?",
-    "cta.p":"Dostępny w Google Play Store. Zainstaluj, stwórz swój warsztat i zacznij dziś.",
+    "cta.p":"Dostępny w Google Play Store. Zainstaluj, utwórz konto i zacznij dziś.",
     "cta.btn1":"Dowiedz się więcej","cta.btn2":"Poproś o demo",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Produkty"
   }},
@@ -534,7 +857,7 @@ const LANGS = {
     "nav.products":"Ürünler","nav.about":"Hakkımızda","nav.privacy":"Gizlilik","nav.contact":"İletişim",
     "sheet0":"SAYFA 00 · TECHNELABS · REV. A",
     "hero.h1":"Problemleri tespit ediyoruz.<br><em>Çözümler inşa ediyoruz.</em>",
-    "hero.sub":"Technelabs, her sektörde ve her pazarda gerçek problemleri çözen ürünler geliştiren bir yazılım şirketidir.",
+    "hero.sub":"Technelabs, belirli sektörlerdeki belirli sorunları çözen yazılımlar geliştiriyor — karmaşıklık olmadan, kesin araçlar.",
     "hero.cta1":"Ürünleri gör","hero.cta2":"İletişim",
     "sheet1":"SAYFA 01 · ÜRÜNLER","prod.h2":"Gerçek sorunları çözen ürünler",
     "prod.sub":"Her ürün, pazara çıkmadan önce üretimde test edilen gerçek bir problemden doğar.",
@@ -543,14 +866,21 @@ const LANGS = {
     "p3.desc":"Endüstriyel bakım için CMMS — önleyici bakım planları, arıza geçmişi ve teknik müdahaleler.",
     "p4.desc":"Boyama ve yüzey işlemi yönetimi — m² başına teklifler, ürün veri sayfaları ve kalite kontrolü.",
     "p5.desc":"Endüstriyel satış ekipleri için CRM — müşteri adayları, satış hattı, teklif takibi ve raporlar.",
-    "status.dev":"Geliştirme aşamasında","sheet2":"SAYFA 02 · HAKKIMIZDA","about.h2":"Karmaşık iş için basit yazılım",
+    "status.dev":"Geliştirme aşamasında",
+    "feat.tag":"Öne çıkan — MetalPro",
+    "feat.title":"Android'de tam atölye yönetimi",
+    "feat.desc":"MetalPro teklifleri, üretim emirlerini, stoku ve faturalamayı tek uygulamada birleştiriyor — metal işleme için geliştirildi, önemli yerde test edildi.",
+    "feat.li1":"PDF dışa aktarmalı teklifler ve üretim emirleri",
+    "feat.li2":"Müşteri ve stok yönetimi",
+    "feat.li3":"Çevrimdışı çalışır, otomatik senkronize eder",
+    "feat.li4":"Google Play'de mevcut",
+    "sheet2":"SAYFA 02 · HAKKIMIZDA","about.h2":"Bir ürün. Bir sorun. Bir sektör.",
     "about.sub":"Her Technelabs ürünü, belirli bir sektördeki belirli bir problemi çözer — öğrenme eğrisi yok, gereksiz özellik yok.",
-    "spec1.h":"Endüstri odağı","spec1.p":"Uyarlanmış genel yazılım yok. Endüstri için inşa edildi — metal işleme, çelik konstrüksiyon, mekanik, boyama, bakım ve daha fazlası.",
-    "spec2.h":"Atölyeye hazır","spec2.p":"Kararlı internet bağlantısı olmadan gürültülü ortamlarda kullanılmak üzere tasarlanmış yerel Android uygulamaları.",
-    
+    "spec1.h":"Endüstri odağı","spec1.p":"Endüstri için geliştirildi. Her ürün bir sektöre odaklanıyor — metal işleme, çelik konstrüksiyon, bakım, boyama ve daha fazlası.",
+    "spec2.h":"Mobile-first","spec2.p":"Kararlı internet bağlantısı gerektirmeyen, zorlu ortamlar için tasarlanmış yerel Android uygulamaları.",
     "spec4.h":"Kurulum gerekmez","spec4.p":"Aylık abonelik, yönetilecek sunucu yok. İlk günden itibaren hazır.",
     "sheet3":"SAYFA 03 · BAŞLA","cta.h2":"MetalPro'yu denemeye hazır mısınız?",
-    "cta.p":"Google Play Store'da mevcut. Yükleyin, atölyenizi oluşturun ve bugün başlayın.",
+    "cta.p":"Google Play Store'da mevcut. Yükleyin, hesap oluşturun ve bugün başlayın.",
     "cta.btn1":"Daha fazla bilgi","cta.btn2":"Demo talep et",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"Ürünler"
   }},
@@ -558,7 +888,7 @@ const LANGS = {
     "nav.products":"제품","nav.about":"회사 소개","nav.privacy":"개인정보","nav.contact":"연락처",
     "sheet0":"시트 00 · TECHNELABS · REV. A",
     "hero.h1":"문제를 파악합니다.<br><em>솔루션을 구축합니다.</em>",
-    "hero.sub":"Technelabs는 모든 산업, 모든 시장에서 실제 문제를 해결하는 제품을 만드는 소프트웨어 하우스입니다.",
+    "hero.sub":"Technelabs는 특정 산업의 특정 문제를 해결하는 소프트웨어를 개발합니다 — 복잡함 없이 정밀한 도구.",
     "hero.cta1":"제품 보기","hero.cta2":"연락처",
     "sheet1":"시트 01 · 제품","prod.h2":"실제 문제를 해결하는 제품",
     "prod.sub":"모든 제품은 시장에 출시되기 전에 생산에서 테스트된 실제 문제에서 탄생합니다.",
@@ -567,14 +897,21 @@ const LANGS = {
     "p3.desc":"산업 유지 보수를 위한 CMMS — 예방 유지 보수 계획, 고장 이력 및 기술 개입.",
     "p4.desc":"도장 및 표면 처리 관리 — m²당 견적, 제품 데이터 시트 및 품질 관리.",
     "p5.desc":"산업 영업팀을 위한 CRM — 리드, 영업 파이프라인, 제안 추적 및 보고서.",
-    "status.dev":"개발 중","sheet2":"시트 02 · 회사 소개","about.h2":"복잡한 작업을 위한 간단한 소프트웨어",
+    "status.dev":"개발 중",
+    "feat.tag":"주요 제품 — MetalPro",
+    "feat.title":"Android에서 완전한 작업장 관리",
+    "feat.desc":"MetalPro는 견적, 작업 주문, 재고 및 청구를 하나의 앱에 통합합니다 — 금속 가공을 위해 개발, 중요한 곳에서 테스트.",
+    "feat.li1":"PDF 내보내기가 포함된 견적 및 작업 주문",
+    "feat.li2":"고객 및 재고 관리",
+    "feat.li3":"오프라인 작동, 자동 동기화",
+    "feat.li4":"Google Play에서 이용 가능",
+    "sheet2":"시트 02 · 회사 소개","about.h2":"하나의 제품. 하나의 문제. 하나의 산업.",
     "about.sub":"각 Technelabs 제품은 특정 산업의 특정 문제를 해결합니다 — 학습 곡선 없음, 불필요한 기능 없음.",
-    "spec1.h":"산업 중심","spec1.p":"일반 소프트웨어를 적용하지 않습니다. 산업을 위해 제작 — 금속 가공, 철강 구조물, 기계, 도장, 유지 보수 등.",
-    "spec2.h":"작업장 준비 완료","spec2.p":"안정적인 인터넷 연결 없이 시끄러운 환경에서 사용하도록 설계된 기본 Android 앱.",
-    
+    "spec1.h":"산업 중심","spec1.p":"산업을 위해 개발되었습니다. 각 제품은 하나의 섹터에 집중 — 금속 가공, 철강 구조물, 유지 보수, 도장 등.",
+    "spec2.h":"모바일 우선","spec2.p":"안정적인 인터넷 없이 까다로운 환경에서 실행되도록 설계된 기본 Android 앱.",
     "spec4.h":"설치 불필요","spec4.p":"월간 구독, 관리할 서버 없음. 첫날부터 운영 가능.",
     "sheet3":"시트 03 · 시작","cta.h2":"MetalPro를 사용해 볼 준비가 되셨나요?",
-    "cta.p":"Google Play Store에서 이용 가능합니다. 설치하고, 작업장을 만들고, 오늘 시작하세요.",
+    "cta.p":"Google Play Store에서 이용 가능합니다. 설치하고, 계정을 만들고, 오늘 시작하세요.",
     "cta.btn1":"자세히 알아보기","cta.btn2":"데모 요청",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"제품"
   }},
@@ -582,7 +919,7 @@ const LANGS = {
     "nav.products":"製品","nav.about":"会社概要","nav.privacy":"プライバシー","nav.contact":"お問い合わせ",
     "sheet0":"シート00 · TECHNELABS · REV. A",
     "hero.h1":"問題を特定します。<br><em>ソリューションを構築します。</em>",
-    "hero.sub":"Technelabsは、あらゆる業界、あらゆる市場で現実の問題を解決する製品を構築するソフトウェアハウスです。",
+    "hero.sub":"Technelabsは、特定の業界の特定の問題を解決するソフトウェアを開発します — 複雑さのない精密なツール。",
     "hero.cta1":"製品を見る","hero.cta2":"お問い合わせ",
     "sheet1":"シート01 · 製品","prod.h2":"実際の問題を解決する製品",
     "prod.sub":"すべての製品は、市場に出る前に本番環境でテストされた実際の問題から生まれます。",
@@ -591,14 +928,21 @@ const LANGS = {
     "p3.desc":"産業メンテナンスのためのCMMS — 予防保守計画、故障履歴、技術介入。",
     "p4.desc":"塗装および表面処理管理 — m²あたりの見積もり、製品データシート、品質管理。",
     "p5.desc":"産業営業チームのためのCRM — リード、営業パイプライン、提案追跡、レポート。",
-    "status.dev":"開発中","sheet2":"シート02 · 会社概要","about.h2":"複雑な仕事のためのシンプルなソフトウェア",
+    "status.dev":"開発中",
+    "feat.tag":"注目 — MetalPro",
+    "feat.title":"Androidでの完全な工場管理",
+    "feat.desc":"MetalProは見積もり、製造オーダー、在庫、請求を1つのアプリに統合 — 金属加工のために開発、重要な場所でテスト済み。",
+    "feat.li1":"PDFエクスポート付きの見積もりと製造オーダー",
+    "feat.li2":"顧客と在庫管理",
+    "feat.li3":"オフライン動作、自動同期",
+    "feat.li4":"Google Playで利用可能",
+    "sheet2":"シート02 · 会社概要","about.h2":"1つの製品。1つの問題。1つの業界。",
     "about.sub":"各Technelabs製品は、特定の業界の特定の問題を解決します — 学習曲線なし、余分な機能なし。",
-    "spec1.h":"産業フォーカス","spec1.p":"汎用ソフトウェアを適用しません。産業のために構築 — 金属加工、鉄鋼構造、機械、塗装、メンテナンスなど。",
-    "spec2.h":"工場対応済み","spec2.p":"安定したインターネット接続なしで騒がしい環境での使用を想定したネイティブAndroidアプリ。",
-    
+    "spec1.h":"産業フォーカス","spec1.p":"産業のために開発。各製品は1つのセクターに集中 — 金属加工、鉄鋼構造、メンテナンス、塗装など。",
+    "spec2.h":"モバイルファースト","spec2.p":"安定したインターネット不要で、要求の厳しい環境向けに設計されたネイティブAndroidアプリ。",
     "spec4.h":"インストール不要","spec4.p":"月額サブスクリプション、管理するサーバーなし。初日から稼働可能。",
     "sheet3":"シート03 · 始める","cta.h2":"MetalProを試す準備はできていますか？",
-    "cta.p":"Google Play Storeで利用可能です。インストールして、工場を作成し、今日から始めましょう。",
+    "cta.p":"Google Play Storeで利用可能です。インストールして、アカウントを作成し、今日から始めましょう。",
     "cta.btn1":"詳細を見る","cta.btn2":"デモをリクエスト",
     "footer.copy":"© 2026 TECHNELABS · VILA VERDE, PORTUGAL","footer.products":"製品"
   }},
@@ -606,7 +950,7 @@ const LANGS = {
     "nav.products":"产品","nav.about":"关于我们","nav.privacy":"隐私","nav.contact":"联系",
     "sheet0":"图纸00 · TECHNELABS · 版本A",
     "hero.h1":"我们识别问题。<br><em>我们构建解决方案。</em>",
-    "hero.sub":"Technelabs是一家软件公司，专注于构建解决实际问题的产品——适用于任何行业、任何市场。",
+    "hero.sub":"Technelabs开发解决特定行业特定问题的软件——精准工具，无需复杂。",
     "hero.cta1":"查看产品","hero.cta2":"联系",
     "sheet1":"图纸01 · 产品","prod.h2":"解决实际问题的产品",
     "prod.sub":"每个产品都源于一个真实问题，在上市前经过生产测试。",
@@ -615,14 +959,21 @@ const LANGS = {
     "p3.desc":"工业维护的CMMS——预防性维护计划、故障历史和技术干预。",
     "p4.desc":"喷漆和表面处理管理——每平方米报价、产品数据表和质量控制。",
     "p5.desc":"工业销售团队的CRM——潜在客户、销售渠道、提案跟踪和报告。",
-    "status.dev":"开发中","sheet2":"图纸02 · 关于我们","about.h2":"简单软件，应对复杂工作",
+    "status.dev":"开发中",
+    "feat.tag":"精选 — MetalPro",
+    "feat.title":"Android上的完整车间管理",
+    "feat.desc":"MetalPro将报价、工单、库存和发票整合到一个应用中——为金属加工而开发，在重要的地方测试。",
+    "feat.li1":"带PDF导出的报价和工单",
+    "feat.li2":"客户和库存管理",
+    "feat.li3":"离线运行，自动同步",
+    "feat.li4":"在Google Play上提供",
+    "sheet2":"图纸02 · 关于我们","about.h2":"一个产品。一个问题。一个行业。",
     "about.sub":"每个Technelabs产品解决特定行业的特定问题——无学习曲线，无多余功能。",
-    "spec1.h":"工业专注","spec1.p":"非通用软件改编。为工业而生——金属加工、钢结构、机械、喷漆、维护等。",
-    "spec2.h":"车间就绪","spec2.p":"原生Android应用，专为无稳定网络的嘈杂环境设计。",
-    
+    "spec1.h":"工业专注","spec1.p":"为工业而开发。每个产品专注于一个行业——金属加工、钢结构、维护、喷漆等。",
+    "spec2.h":"移动优先","spec2.p":"原生Android应用，为不需要稳定网络的苛刻环境设计。",
     "spec4.h":"无需安装","spec4.p":"月度订阅，无需管理服务器。第一天即可运行。",
     "sheet3":"图纸03 · 开始","cta.h2":"准备好尝试MetalPro了吗？",
-    "cta.p":"在Google Play商店提供。安装、创建您的车间并立即开始。",
+    "cta.p":"在Google Play商店提供。安装、创建账户并立即开始。",
     "cta.btn1":"了解更多","cta.btn2":"申请演示",
     "footer.copy":"© 2026 TECHNELABS · 葡萄牙维拉维尔迪","footer.products":"产品"
   }},
@@ -630,7 +981,7 @@ const LANGS = {
     "nav.products":"Продукты","nav.about":"О нас","nav.privacy":"Конфиденциальность","nav.contact":"Контакт",
     "sheet0":"ЛИСТ 00 · TECHNELABS · РЕД. A",
     "hero.h1":"Мы определяем проблемы.<br><em>Мы создаём решения.</em>",
-    "hero.sub":"Technelabs — это программный дом, создающий продукты для решения реальных проблем — в любой отрасли, на любом рынке.",
+    "hero.sub":"Technelabs разрабатывает программное обеспечение для решения конкретных проблем в конкретных отраслях — точные инструменты без лишней сложности.",
     "hero.cta1":"Посмотреть продукты","hero.cta2":"Контакт",
     "sheet1":"ЛИСТ 01 · ПРОДУКТЫ","prod.h2":"Продукты, решающие реальные проблемы",
     "prod.sub":"Каждый продукт рождается из реальной проблемы, протестированной в производстве до выхода на рынок.",
@@ -639,14 +990,21 @@ const LANGS = {
     "p3.desc":"CMMS для промышленного обслуживания — планы профилактического обслуживания, история неисправностей и технические вмешательства.",
     "p4.desc":"Управление покраской и обработкой поверхностей — коммерческие предложения за м², паспорта продуктов и контроль качества.",
     "p5.desc":"CRM для промышленных команд продаж — лиды, воронка продаж, отслеживание предложений и отчёты.",
-    "status.dev":"В разработке","sheet2":"ЛИСТ 02 · О НАС","about.h2":"Простое программное обеспечение для сложной работы",
+    "status.dev":"В разработке",
+    "feat.tag":"Рекомендуем — MetalPro",
+    "feat.title":"Полное управление цехом на Android",
+    "feat.desc":"MetalPro объединяет предложения, производственные заказы, склад и выставление счетов в одном приложении — разработан для металлообработки, протестирован там где важно.",
+    "feat.li1":"Коммерческие предложения и производственные заказы с экспортом PDF",
+    "feat.li2":"Управление клиентами и складом",
+    "feat.li3":"Работает офлайн, синхронизируется автоматически",
+    "feat.li4":"Доступно в Google Play",
+    "sheet2":"ЛИСТ 02 · О НАС","about.h2":"Один продукт. Одна проблема. Одна отрасль.",
     "about.sub":"Каждый продукт Technelabs решает конкретную проблему в конкретной отрасли — без кривой обучения, без лишних функций.",
-    "spec1.h":"Промышленный фокус","spec1.p":"Никакого адаптированного общего программного обеспечения. Создано для промышленности — металлообработка, металлоконструкции, механика, покраска, обслуживание и многое другое.",
-    "spec2.h":"Готово для цеха","spec2.p":"Нативные Android-приложения, разработанные для шумных сред без стабильного интернета.",
-    
+    "spec1.h":"Промышленный фокус","spec1.p":"Разработано для промышленности. Каждый продукт сфокусирован на одной отрасли — металлообработка, металлоконструкции, обслуживание, покраска и более.",
+    "spec2.h":"Мобильный приоритет","spec2.p":"Нативные Android-приложения, разработанные для требовательных условий — без стабильного интернета.",
     "spec4.h":"Установка не нужна","spec4.p":"Ежемесячная подписка, никаких серверов для управления. Работает с первого дня.",
     "sheet3":"ЛИСТ 03 · НАЧАТЬ","cta.h2":"Готовы попробовать MetalPro?",
-    "cta.p":"Доступно в Google Play Store. Установите, создайте свой цех и начните сегодня.",
+    "cta.p":"Доступно в Google Play Store. Установите, создайте аккаунт и начните сегодня.",
     "cta.btn1":"Узнать больше","cta.btn2":"Запросить демо",
     "footer.copy":"© 2026 TECHNELABS · ВИЛА-ВЕРДИ, ПОРТУГАЛИЯ","footer.products":"Продукты"
   }},
@@ -654,7 +1012,7 @@ const LANGS = {
     "nav.products":"المنتجات","nav.about":"من نحن","nav.privacy":"الخصوصية","nav.contact":"اتصل بنا",
     "sheet0":"ورقة 00 · TECHNELABS · مراجعة أ",
     "hero.h1":"نحدد المشاكل.<br><em>نبني الحلول.</em>",
-    "hero.sub":"Technelabs هو بيت برمجيات متخصص في إنشاء منتجات تحل مشاكل حقيقية — في أي قطاع، في أي سوق.",
+    "hero.sub":"Technelabs تطور برمجيات تحل مشاكل محددة في صناعات محددة — أدوات دقيقة بدون تعقيد.",
     "hero.cta1":"رؤية المنتجات","hero.cta2":"اتصل بنا",
     "sheet1":"ورقة 01 · المنتجات","prod.h2":"منتجات تحل مشاكل حقيقية",
     "prod.sub":"كل منتج يولد من مشكلة حقيقية، تم اختبارها في الإنتاج قبل الوصول إلى السوق.",
@@ -663,14 +1021,21 @@ const LANGS = {
     "p3.desc":"CMMS للصيانة الصناعية — خطط الصيانة الوقائية وسجل الأعطال والتدخلات التقنية.",
     "p4.desc":"إدارة الطلاء ومعالجة الأسطح — عروض أسعار لكل م² وبطاقات بيانات المنتجات ومراقبة الجودة.",
     "p5.desc":"CRM لفرق المبيعات الصناعية — العملاء المحتملون وخط أنابيب المبيعات وتتبع العروض والتقارير.",
-    "status.dev":"قيد التطوير","sheet2":"ورقة 02 · من نحن","about.h2":"برمجيات بسيطة للعمل المعقد",
+    "status.dev":"قيد التطوير",
+    "feat.tag":"مميز — MetalPro",
+    "feat.title":"إدارة كاملة للورشة على Android",
+    "feat.desc":"MetalPro يجمع عروض الأسعار وأوامر الإنتاج والمخزون والفوترة في تطبيق واحد — طُور لمعالجة المعادن، تم اختباره حيث يهم.",
+    "feat.li1":"عروض أسعار وأوامر إنتاج مع تصدير PDF",
+    "feat.li2":"إدارة العملاء والمخزون",
+    "feat.li3":"يعمل بدون إنترنت، يزامن تلقائياً",
+    "feat.li4":"متاح على Google Play",
+    "sheet2":"ورقة 02 · من نحن","about.h2":"منتج واحد. مشكلة واحدة. صناعة واحدة.",
     "about.sub":"كل منتج Technelabs يحل مشكلة محددة في قطاع محدد — بدون منحنى تعلم، بدون وظائف زائدة.",
-    "spec1.h":"تركيز صناعي","spec1.p":"لا توجد برمجيات عامة معدلة. مبني للصناعة — معالجة المعادن، الحدادة، الميكانيكا، الطلاء، الصيانة والمزيد.",
-    "spec2.h":"جاهز للورشة","spec2.p":"تطبيقات Android أصلية، مصممة للاستخدام في البيئات الصاخبة بدون اتصال إنترنت مستقر.",
-    
+    "spec1.h":"تركيز صناعي","spec1.p":"طُور للصناعة. كل منتج يركز على قطاع واحد — معالجة المعادن، الحدادة، الصيانة، الطلاء والمزيد.",
+    "spec2.h":"الجوال أولاً","spec2.p":"تطبيقات Android أصلية، مصممة للبيئات المتطلبة — بدون إنترنت مستقر.",
     "spec4.h":"لا حاجة للتثبيت","spec4.p":"اشتراك شهري، لا خوادم للإدارة. جاهز للعمل من اليوم الأول.",
     "sheet3":"ورقة 03 · ابدأ","cta.h2":"هل أنت مستعد لتجربة MetalPro؟",
-    "cta.p":"متاح على Google Play Store. ثبّت وأنشئ ورشتك وابدأ اليوم.",
+    "cta.p":"متاح على Google Play Store. ثبّت وأنشئ حساباً وابدأ اليوم.",
     "cta.btn1":"اعرف المزيد","cta.btn2":"طلب عرض توضيحي",
     "footer.copy":"© 2026 TECHNELABS · فيلا فيردي، البرتغال","footer.products":"المنتجات"
   }}
@@ -699,7 +1064,6 @@ function tlApply(lang) {
   try { localStorage.setItem('tl-lang', lang); } catch(e) {}
 }
 
-// Build language selector
 (function buildSelect() {
   const sel = document.getElementById('langSelect');
   Object.entries(LANGS).forEach(([code, L]) => {
@@ -711,7 +1075,6 @@ function tlApply(lang) {
   sel.addEventListener('change', e => tlApply(e.target.value));
 })();
 
-// Auto-detect
 (function initLang() {
   let saved; try { saved = localStorage.getItem('tl-lang'); } catch(e) {}
   if (saved && LANGS[saved]) { tlApply(saved); return; }
