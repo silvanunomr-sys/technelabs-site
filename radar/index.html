@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar de contratos públicos</title>
+<meta name="description" content="Saiba que entidades públicas compram os seus serviços, quando compram, a quem e por quanto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,500;87.5,600;87.5,700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231D4E89'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23fff'/%3E%3Crect x='17' y='6' width='9' height='9' fill='%2395B4D6'/%3E%3Crect x='6' y='17' width='9' height='9' fill='%2395B4D6'/%3E%3Crect x='17' y='17' width='9' height='9' fill='%23E8A317'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- Ecrã de entrada -->
+<section id="v-login" class="login" hidden>
+  <div class="login-card">
+    <div class="marca"><span class="logo" aria-hidden="true"></span>Radar de contratos públicos</div>
+    <h1>Saiba quem compra os seus serviços, quando e a quem</h1>
+    <p class="lead">Mais de 460 mil contratos públicos de Portugal, filtrados pelos serviços que a sua empresa presta.</p>
+    <form id="f-login" novalidate>
+      <label>Email<input type="email" id="l-email" autocomplete="email" required></label>
+      <label>Palavra-passe<input type="password" id="l-pass" autocomplete="current-password" minlength="6" required></label>
+      <div class="acoes">
+        <button type="submit" class="btn primario" id="b-entrar">Entrar</button>
+        <button type="button" class="btn" id="b-registar">Criar conta</button>
+      </div>
+      <p class="msg" id="l-msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- Aplicação -->
+<div id="v-app" hidden>
+  <header class="topo">
+    <div class="marca"><span class="logo" aria-hidden="true"></span><span id="t-empresa">Radar</span></div>
+    <button class="btn so-movel" id="b-filtros" aria-controls="painel" aria-expanded="false">Filtros</button>
+    <button class="btn ghost" id="b-sair">Sair</button>
+  </header>
+
+  <div class="corpo">
+    <aside class="painel" id="painel" aria-label="Filtros">
+      <div class="painel-in">
+        <h2>Os seus serviços</h2>
+        <div id="servicos"></div>
+
+        <h3>Códigos CPV adicionais</h3>
+        <div class="cpv-pesquisa">
+          <input type="search" id="cpv-q" placeholder="Procurar CPV, ex.: elevadores" aria-label="Procurar códigos CPV">
+          <ul id="cpv-res" class="cpv-res" role="listbox"></ul>
+        </div>
+        <div id="cpv-sel" class="chips"></div>
+
+        <h2>Zona</h2>
+        <div id="distritos" class="chips"></div>
+
+        <h2>Procedimento</h2>
+        <label class="toggle"><input type="checkbox" id="so-convite" checked> Só ajustes diretos e consultas prévias (por convite)</label>
+
+        <h2>Empresa</h2>
+        <input type="text" id="empresa" placeholder="Nome da sua empresa" aria-label="Nome da empresa">
+
+        <div class="painel-acoes">
+          <button class="btn primario" id="b-guardar">Guardar e ver resultados</button>
+          <p class="msg" id="p-msg" role="status"></p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="principal">
+      <section class="resumo" aria-live="polite">
+        <div id="kpis" class="kpis"></div>
+        <p class="filtro-txt" id="filtro-txt"></p>
+      </section>
+
+      <nav class="tabs" role="tablist" aria-label="Vistas">
+        <button role="tab" data-tab="compradores" aria-selected="true">Compradores</button>
+        <button role="tab" data-tab="calendario">Calendário</button>
+        <button role="tab" data-tab="terminar">A terminar</button>
+        <button role="tab" data-tab="precos">Preços</button>
+        <button role="tab" data-tab="concorrencia">Concorrência</button>
+      </nav>
+
+      <section class="vista" id="tab-compradores" role="tabpanel">
+        <p class="ajuda">Entidades que contrataram estes serviços. As que compram por convite são as que deve visitar para entrar na lista de convidados.</p>
+        <div id="compradores"></div>
+      </section>
+
+      <section class="vista" id="tab-calendario" role="tabpanel" hidden>
+        <p class="ajuda">Contratos por mês de assinatura. O mês atual está assinalado: apresente-se um a dois meses antes do pico de cada entidade.</p>
+        <div id="calendario" class="calendario"></div>
+      </section>
+
+      <section class="vista" id="tab-terminar" role="tabpanel" hidden>
+        <p class="ajuda">Contratos com 4 meses ou mais cuja data de fim estimada (assinatura + prazo) cai entre o mês passado e os próximos 9 meses.</p>
+        <div id="terminar"></div>
+      </section>
+
+      <section class="vista" id="tab-precos" role="tabpanel" hidden>
+        <p class="ajuda">Escreva o tipo de trabalho para ver quanto se pagou em contratos parecidos.</p>
+        <div class="linha-pesquisa">
+          <input type="search" id="preco-q" placeholder="Ex.: portão, guarda-corpos, quadro elétrico" aria-label="Tipo de trabalho">
+          <button class="btn primario" id="b-preco">Procurar</button>
+        </div>
+        <div id="precos-resumo"></div>
+        <div id="precos"></div>
+      </section>
+
+      <section class="vista" id="tab-concorrencia" role="tabpanel" hidden>
+        <p class="ajuda">Empresas que ganharam estes contratos na sua zona.</p>
+        <div id="concorrencia"></div>
+      </section>
+
+      <footer class="rodape">Fonte: Portal BASE / IMPIC, ficheiros oficiais no dados.gov.pt (CC BY 4.0). Datas de fim estimadas a partir do prazo de execução; podem mudar com prorrogações.</footer>
+    </main>
+  </div>
+</div>
+
+<div class="carregar" id="carregar" hidden aria-hidden="true"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
