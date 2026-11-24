@@ -72,6 +72,10 @@
       <section class="resumo" aria-live="polite">
         <div id="kpis" class="kpis"></div>
         <p class="filtro-txt" id="filtro-txt"></p>
+        <div class="aviso">
+          <p><b>Estes contratos já foram adjudicados.</b> Não é possível candidatar-se a eles. Servem para saber quem compra os seus serviços, em que altura do ano e a quem, para se apresentar a essas entidades antes da próxima compra.</p>
+          <button type="button" class="link" data-tab="concorrer">Como ser convidado ou concorrer</button>
+        </div>
       </section>
 
       <nav class="tabs" role="tablist" aria-label="Vistas">
@@ -80,6 +84,7 @@
         <button role="tab" data-tab="terminar">A terminar</button>
         <button role="tab" data-tab="precos">Preços</button>
         <button role="tab" data-tab="concorrencia">Concorrência</button>
+        <button role="tab" data-tab="concorrer">Como concorrer</button>
       </nav>
 
       <section class="vista" id="tab-compradores" role="tabpanel">
@@ -110,6 +115,38 @@
       <section class="vista" id="tab-concorrencia" role="tabpanel" hidden>
         <p class="ajuda">Empresas que ganharam estes contratos na sua zona.</p>
         <div id="concorrencia"></div>
+      </section>
+
+      <section class="vista guia" id="tab-concorrer" role="tabpanel" hidden>
+        <h2>Há duas formas de ganhar contratos públicos</h2>
+
+        <h3>1. Ser convidado (ajuste direto e consulta prévia)</h3>
+        <p>A maior parte dos contratos pequenos e médios não tem anúncio público: a entidade escolhe e convida diretamente as empresas que conhece. Não há candidatura. É preciso que a entidade saiba que a sua empresa existe antes de precisar.</p>
+        <ol>
+          <li><b>Escolha as entidades</b> no separador Compradores: as que compram os seus serviços por convite, de preferência todos os anos.</li>
+          <li><b>Veja quando compram</b> no Calendário e apresente-se um a dois meses antes do pico.</li>
+          <li><b>Contacte o serviço de compras</b> (aprovisionamento ou contratação pública) da entidade. Na câmara municipal, peça esse serviço pelo telefone geral. Envie uma apresentação curta: o que faz, zona, prazos de resposta, trabalhos semelhantes e certificações.</li>
+          <li><b>Peça para ser incluído nas próximas consultas</b> para o tipo de trabalho que vê no histórico dessa entidade.</li>
+          <li><b>Registe-se na plataforma eletrónica que a entidade usa</b> (acinGov, Vortal, anoGov, Saphety ou outra). Os convites e as propostas passam por lá. O registo de fornecedor nestas plataformas costuma ser gratuito.</li>
+        </ol>
+
+        <h3>2. Concorrer a concursos públicos anunciados</h3>
+        <p>Os concursos públicos abertos são anunciados no Diário da República e no portal BASE. Qualquer empresa pode concorrer.</p>
+        <ol>
+          <li><b>Encontre os concursos:</b> pesquise no portal BASE (Anúncios) ou ative os alertas de concursos na app gov.pt.</li>
+          <li><b>Abra o anúncio:</b> diz o prazo, o preço base e a plataforma onde estão as peças do procedimento (caderno de encargos e programa do concurso).</li>
+          <li><b>Registe-se nessa plataforma</b> e descarregue as peças.</li>
+          <li><b>Prepare e assine a proposta</b> com assinatura eletrónica qualificada (por exemplo, certificado digital de quem obriga a empresa).</li>
+          <li><b>Submeta dentro do prazo</b> na plataforma.</li>
+        </ol>
+
+        <h3>Documentos que convém ter em dia</h3>
+        <ul>
+          <li>Registo no <b>Portal Nacional de Fornecedores do Estado</b> (gov.pt), que permite às entidades consultar diretamente a situação nas Finanças e na Segurança Social.</li>
+          <li>Certidões de não dívida às Finanças e à Segurança Social, e registo criminal da empresa e dos gerentes, para quando forem pedidos.</li>
+          <li><b>Obras (empreitadas):</b> é obrigatório alvará ou certificado de empreiteiro do IMPIC na categoria certa. Prestação de serviços e fornecimentos (por exemplo, reparações e manutenção) normalmente não o exigem: confirme no caderno de encargos.</li>
+        </ul>
+        <p class="ajuda">Este guia é informativo e não substitui a leitura do programa de cada procedimento.</p>
       </section>
 
       <footer class="rodape">Fonte: Portal BASE / IMPIC, ficheiros oficiais no dados.gov.pt (CC BY 4.0). Datas de fim estimadas a partir do prazo de execução; podem mudar com prorrogações.</footer>

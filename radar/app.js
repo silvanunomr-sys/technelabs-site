@@ -178,12 +178,12 @@ async function recarregar() {
   } catch (e) { erroGeral(e); }
 }
 
-document.querySelector(".tabs").addEventListener("click", (e) => { const b = e.target.closest("[data-tab]"); if (b) abrirTab(b.dataset.tab); });
+document.querySelector(".principal").addEventListener("click", (e) => { const b = e.target.closest("[data-tab]"); if (b) abrirTab(b.dataset.tab); });
 async function abrirTab(t) {
   estado.tab = t;
-  document.querySelectorAll(".tabs [data-tab]").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === t));
+  document.querySelectorAll(".tabs [data-tab]").forEach((b) => { b.setAttribute("aria-selected", b.dataset.tab === t); if (b.dataset.tab === t) b.scrollIntoView({ block: "nearest", inline: "nearest" }); });
   document.querySelectorAll(".vista").forEach((v) => (v.hidden = v.id !== "tab-" + t));
-  if (estado.carregado[t]) return;
+  if (estado.carregado[t] || t === "concorrer") return;
   estado.carregado[t] = true;
   try {
     if (t === "compradores" || t === "calendario") await carregarCompradores();
