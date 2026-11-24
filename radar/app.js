@@ -23,7 +23,7 @@ const seguro = (u) => (/^https?:\/\//i.test(u || "") ? u : "");
 const base = (id) => `https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=${id}`;
 
 // Estado
-const estado = { servicos: [], catalogo: [], cpvs: [], distritos: [], so_convite: true, empresa: "", tab: "abertos", carregado: {} };
+const estado = { servicos: [], catalogo: [], cpvs: [], distritos: [], so_convite: true, empresa: "", tab: "novos", carregado: {} };
 const filtro = () => ({ servicos: estado.servicos, cpvs: estado.cpvs.map((c) => c.cpv.replace(/0+$/, "") || c.cpv), distritos: estado.distritos, so_convite: estado.so_convite, anos: 5 });
 
 let pendentes = 0;
@@ -165,6 +165,7 @@ function textoFiltro() {
 async function recarregar() {
   estado.carregado = {};
   recarregarCompradores();
+  novos = null;
   $("filtro-txt").textContent = textoFiltro();
   try {
     const r = await rpc("radar_resumo", { f: filtro() });
@@ -188,6 +189,7 @@ async function abrirTab(t) {
   estado.carregado[t] = true;
   try {
     if (t === "compradores" || t === "calendario") await carregarCompradores();
+    if (t === "novos") await carregarNovos();
     if (t === "abertos") await carregarAbertos();
     if (t === "terminar") await carregarTerminar();
     if (t === "concorrencia") await carregarConcorrencia();
@@ -237,18 +239,16 @@ function desenharCalendario() {
     }).join("")}`).join("")}</div>`;
 }
 
-async function carregarAbertos() {
-  const r = await rpc("radar_concursos", { f: filtro() });
-  const el = $("abertos");
-  if (!r?.length) { el.innerHTML = `<div class="vazio">Não há concursos abertos para estes serviços e zona neste momento. Os anúncios são atualizados de 15 em 15 dias; experimente juntar mais serviços ou distritos.</div>`; return; }
-  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
-  el.innerHTML = r.map((a) => {
-    const dias = Math.round((new Date(a.data_limite) - hoje) / 864e5);
+function cartaoConcurso(a, porVer) {
+    const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+    const dias = a.data_limite ? Math.round((new Date(a.data_limite) - hoje) / 864e5) : null;
     const dist = DISTRITOS.filter(([id]) => (a.distritos || []).includes(id)).map(([, n]) => n).join(", ");
     const local = [a.concelho, dist !== a.concelho ? dist : ""].filter(Boolean).join(" · ");
-    return `<article class="concurso">
-      <div class="prazo${dias <= 5 ? " urgente" : ""}"><b>${dias === 0 ? "Hoje" : dias === 1 ? "1 dia" : dias + " dias"}</b><span>até ${data(a.data_limite)}</span></div>
-      <div><h3>${esc(a.descricao)}</h3>
+    const prazo = dias == null ? `<b>—</b><span>prazo no anúncio</span>` : dias < 0 ? `<b>Fechado</b><span>${data(a.data_limite)}</span>`
+      : `<b>${dias === 0 ? "Hoje" : dias === 1 ? "1 dia" : dias + " dias"}</b><span>até ${data(a.data_limite)}</span>`;
+    return `<article class="concurso${porVer ? " por-ver" : ""}">
+      <div class="prazo${dias != null && dias <= 5 ? " urgente" : ""}">${prazo}</div>
+      <div><h3>${porVer ? '<span class="etiqueta-novo">Novo</span>' : ""}${esc(a.descricao)}</h3>
         <div class="meta">${esc(a.entidade)}${local ? " · " + esc(local) : ""}</div>
         <div class="meta">${esc(a.modelo || "")}${a.tipos_contrato ? " · " + esc(a.tipos_contrato) : ""}${a.cpv_designacao ? " · " + esc(a.cpv_designacao) : ""}${a.tipo_acto && /altera/i.test(a.tipo_acto) ? " · prazo alterado" : ""}</div></div>
       <div class="valor">${a.preco_base ? `<b>${eur(a.preco_base)}</b>preço base` : ""}</div>
@@ -257,7 +257,39 @@ async function carregarAbertos() {
         ${seguro(a.url_dr) ? `<a class="btn pequeno" href="${esc(seguro(a.url_dr))}" target="_blank" rel="noopener">Anúncio no Diário da República</a>` : ""}
       </div>
     </article>`;
-  }).join("");
+}
+
+async function carregarAbertos() {
+  const r = await rpc("radar_concursos", { f: filtro() });
+  const el = $("abertos");
+  if (!r?.length) { el.innerHTML = `<div class="vazio">Não há concursos abertos para estes serviços e zona neste momento. Experimente juntar mais serviços ou distritos.</div>`; return; }
+  el.innerHTML = r.map((a) => cartaoConcurso(a, false)).join("");
+}
+
+// ---------- Novos (alertas dentro da aplicação) ----------
+const CHAVE_VISTOS = "radar-vistos";
+const lerVistos = () => { try { return new Set(JSON.parse(localStorage.getItem(CHAVE_VISTOS) || "[]")); } catch { return new Set(); } };
+const guardarVistos = (s) => { try { localStorage.setItem(CHAVE_VISTOS, JSON.stringify([...s].slice(-2000))); } catch { /* sem armazenamento */ } };
+let novos = null;
+async function contarNovos() {
+  try {
+    novos = await rpc("radar_novos", { f: filtro(), dias: 7 });
+    const vistos = lerVistos(), n = (novos || []).filter((a) => !vistos.has(a.id)).length;
+    $("n-novos").hidden = !n; $("n-novos").textContent = n;
+  } catch { /* o separador mostra o erro */ }
+}
+async function carregarNovos() {
+  if (!novos) await contarNovos();
+  const el = $("novos");
+  if (!novos?.length) { el.innerHTML = `<div class="vazio">Nenhum concurso novo nos últimos 7 dias para estes serviços e zona.</div>`; return; }
+  const vistos = lerVistos();
+  const porDia = {};
+  novos.forEach((a) => (porDia[a.data_publicacao] ??= []).push(a));
+  el.innerHTML = Object.entries(porDia).map(([d, lista]) => `<h3 class="dia">${new Date(d).toLocaleDateString("pt-PT", { weekday: "long", day: "numeric", month: "long" })}</h3>` +
+    lista.map((a) => cartaoConcurso(a, !vistos.has(a.id))).join("")).join("");
+  novos.forEach((a) => vistos.add(a.id));
+  guardarVistos(vistos);
+  $("n-novos").hidden = true;
 }
 
 async function carregarTerminar() {

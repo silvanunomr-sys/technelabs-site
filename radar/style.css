@@ -159,3 +159,10 @@ input:focus{border-color:var(--azul);outline:none}
 .btn.pequeno{min-height:40px;padding:0 14px;font-size:15px;display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 .btn.pequeno.primario{color:#fff}
 @media (max-width:900px){.concurso{grid-template-columns:1fr}.concurso .valor{text-align:left}.concurso .acoes{grid-column:1}}
+
+/* Novos */
+.contador{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;margin-left:4px;border-radius:999px;background:var(--ambar);color:var(--ink);font-size:13px;font-weight:700}
+.dia{font-family:var(--t-display);font-stretch:87.5%;font-size:19px;margin:22px 0 2px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.dia:first-child{margin-top:0}
+.concurso.por-ver{box-shadow:inset 4px 0 0 var(--ambar);padding-left:12px}
+.etiqueta-novo{display:inline-block;font-size:13px;font-weight:700;background:var(--ambar);border-radius:4px;padding:1px 6px;margin-right:6px;vertical-align:2px}

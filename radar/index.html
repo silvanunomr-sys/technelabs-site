@@ -73,13 +73,14 @@
         <div id="kpis" class="kpis"></div>
         <p class="filtro-txt" id="filtro-txt"></p>
         <div class="aviso">
-          <p><b>Concursos abertos</b> são os únicos a que se pode candidatar já. Os números acima e os separadores Compradores, Calendário, A terminar, Preços e Concorrência mostram contratos <b>já adjudicados</b>: servem para saber quem compra os seus serviços, quando e a quem, e apresentar-se antes da próxima compra.</p>
+          <p><b>Novos</b> e <b>Concursos abertos</b> são os únicos a que se pode candidatar já. Os números acima e os separadores Compradores, Calendário, A terminar, Preços e Concorrência mostram contratos <b>já adjudicados</b>: servem para saber quem compra os seus serviços, quando e a quem, e apresentar-se antes da próxima compra.</p>
           <button type="button" class="link" data-tab="concorrer">Como ser convidado ou concorrer</button>
         </div>
       </section>
 
       <nav class="tabs" role="tablist" aria-label="Vistas">
-        <button role="tab" data-tab="abertos" aria-selected="true">Concursos abertos</button>
+        <button role="tab" data-tab="novos" aria-selected="true">Novos <span class="contador" id="n-novos" hidden></span></button>
+        <button role="tab" data-tab="abertos">Concursos abertos</button>
         <button role="tab" data-tab="compradores">Compradores</button>
         <button role="tab" data-tab="calendario">Calendário</button>
         <button role="tab" data-tab="terminar">A terminar</button>
@@ -88,7 +89,12 @@
         <button role="tab" data-tab="concorrer">Como concorrer</button>
       </nav>
 
-      <section class="vista" id="tab-abertos" role="tabpanel">
+      <section class="vista" id="tab-novos" role="tabpanel">
+        <p class="ajuda">Concursos publicados no Diário da República nos últimos 7 dias para os seus serviços e zona. Atualizado todos os dias úteis ao fim da tarde. Os que ainda não tinha visto estão assinalados.</p>
+        <div id="novos"></div>
+      </section>
+
+      <section class="vista" id="tab-abertos" role="tabpanel" hidden>
         <p class="ajuda">Concursos públicos anunciados com prazo de propostas ainda a correr, para os seus serviços e zona. Abra as peças do procedimento para ver o caderno de encargos e concorrer na plataforma indicada.</p>
         <div id="abertos"></div>
       </section>
