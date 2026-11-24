@@ -251,7 +251,7 @@ function cartaoConcurso(a, porVer) {
       <div><h3>${porVer ? '<span class="etiqueta-novo">Novo</span>' : ""}${esc(a.descricao)}</h3>
         <div class="meta">${esc(a.entidade)}${local ? " · " + esc(local) : ""}</div>
         <div class="meta">${esc(a.modelo || "")}${a.tipos_contrato ? " · " + esc(a.tipos_contrato) : ""}${a.cpv_designacao ? " · " + esc(a.cpv_designacao) : ""}${a.tipo_acto && /altera/i.test(a.tipo_acto) ? " · prazo alterado" : ""}</div></div>
-      <div class="valor">${a.preco_base ? `<b>${eur(a.preco_base)}</b>preço base` : ""}</div>
+      <div class="valor">${a.preco_base ? `<b>${eur(a.preco_base)}</b>preço base<br><small>máximo, sem IVA</small>` : ""}</div>
       <div class="acoes">
         ${seguro(a.url_pecas) ? `<a class="btn pequeno primario" href="${esc(seguro(a.url_pecas))}" target="_blank" rel="noopener">Abrir peças e concorrer</a>` : ""}
         ${seguro(a.url_dr) ? `<a class="btn pequeno" href="${esc(seguro(a.url_dr))}" target="_blank" rel="noopener">Anúncio no Diário da República</a>` : ""}
