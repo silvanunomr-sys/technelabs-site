@@ -144,3 +144,18 @@ input:focus{border-color:var(--azul);outline:none}
   .tabela.empilhar td[data-l]::before{content:attr(data-l) ": ";color:var(--mute)}
 }
 @media (prefers-reduced-motion:reduce){.painel{transition:none}}
+
+/* Concursos abertos */
+.concurso{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:6px 20px;padding:16px 0;border-bottom:1.5px solid var(--line);align-items:start}
+.prazo{font-family:var(--t-display);font-stretch:87.5%;line-height:1.1}
+.prazo b{display:block;font-size:28px}
+.prazo span{font-size:14px;color:var(--mute)}
+.prazo.urgente b{color:#8A5A00}
+.concurso h3{font-size:18px;line-height:1.25}
+.concurso .meta{color:var(--mute);font-size:15px;margin-top:2px}
+.concurso .valor{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.concurso .valor b{font-family:var(--t-display);font-size:22px;display:block}
+.concurso .acoes{grid-column:2/-1;display:flex;gap:10px;flex-wrap:wrap}
+.btn.pequeno{min-height:40px;padding:0 14px;font-size:15px;display:inline-flex;align-items:center;text-decoration:none;color:inherit}
+.btn.pequeno.primario{color:#fff}
+@media (max-width:900px){.concurso{grid-template-columns:1fr}.concurso .valor{text-align:left}.concurso .acoes{grid-column:1}}

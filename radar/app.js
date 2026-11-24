@@ -19,10 +19,11 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 const eur = (v) => (v == null ? "—" : new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(v));
 const num = (v) => new Intl.NumberFormat("pt-PT").format(v ?? 0);
 const data = (s) => (s ? s.split("-").reverse().join("/") : "—");
+const seguro = (u) => (/^https?:\/\//i.test(u || "") ? u : "");
 const base = (id) => `https://www.base.gov.pt/Base4/pt/detalhe/?type=contratos&id=${id}`;
 
 // Estado
-const estado = { servicos: [], catalogo: [], cpvs: [], distritos: [], so_convite: true, empresa: "", tab: "compradores", carregado: {} };
+const estado = { servicos: [], catalogo: [], cpvs: [], distritos: [], so_convite: true, empresa: "", tab: "abertos", carregado: {} };
 const filtro = () => ({ servicos: estado.servicos, cpvs: estado.cpvs.map((c) => c.cpv.replace(/0+$/, "") || c.cpv), distritos: estado.distritos, so_convite: estado.so_convite, anos: 5 });
 
 let pendentes = 0;
@@ -187,6 +188,7 @@ async function abrirTab(t) {
   estado.carregado[t] = true;
   try {
     if (t === "compradores" || t === "calendario") await carregarCompradores();
+    if (t === "abertos") await carregarAbertos();
     if (t === "terminar") await carregarTerminar();
     if (t === "concorrencia") await carregarConcorrencia();
     if (t === "precos") $("precos").innerHTML = $("precos").innerHTML || `<div class="vazio">Escreva um tipo de trabalho acima.</div>`;
@@ -233,6 +235,29 @@ function desenharCalendario() {
       const a = n ? 0.2 + 0.8 * n / max : 0;
       return `<span class="c${i === MES_ATUAL ? " agora" : ""}" title="${esc(c.nome)} — ${MESES[i]}: ${n} contrato(s)" style="${n ? `background:color-mix(in srgb, var(--azul) ${Math.round(a * 100)}%, white);color:${a > 0.55 ? "#fff" : "var(--ink)"}` : ""}">${n || ""}</span>`;
     }).join("")}`).join("")}</div>`;
+}
+
+async function carregarAbertos() {
+  const r = await rpc("radar_concursos", { f: filtro() });
+  const el = $("abertos");
+  if (!r?.length) { el.innerHTML = `<div class="vazio">Não há concursos abertos para estes serviços e zona neste momento. Os anúncios são atualizados de 15 em 15 dias; experimente juntar mais serviços ou distritos.</div>`; return; }
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  el.innerHTML = r.map((a) => {
+    const dias = Math.round((new Date(a.data_limite) - hoje) / 864e5);
+    const dist = DISTRITOS.filter(([id]) => (a.distritos || []).includes(id)).map(([, n]) => n).join(", ");
+    const local = [a.concelho, dist !== a.concelho ? dist : ""].filter(Boolean).join(" · ");
+    return `<article class="concurso">
+      <div class="prazo${dias <= 5 ? " urgente" : ""}"><b>${dias === 0 ? "Hoje" : dias === 1 ? "1 dia" : dias + " dias"}</b><span>até ${data(a.data_limite)}</span></div>
+      <div><h3>${esc(a.descricao)}</h3>
+        <div class="meta">${esc(a.entidade)}${local ? " · " + esc(local) : ""}</div>
+        <div class="meta">${esc(a.modelo || "")}${a.tipos_contrato ? " · " + esc(a.tipos_contrato) : ""}${a.cpv_designacao ? " · " + esc(a.cpv_designacao) : ""}${a.tipo_acto && /altera/i.test(a.tipo_acto) ? " · prazo alterado" : ""}</div></div>
+      <div class="valor">${a.preco_base ? `<b>${eur(a.preco_base)}</b>preço base` : ""}</div>
+      <div class="acoes">
+        ${seguro(a.url_pecas) ? `<a class="btn pequeno primario" href="${esc(seguro(a.url_pecas))}" target="_blank" rel="noopener">Abrir peças e concorrer</a>` : ""}
+        ${seguro(a.url_dr) ? `<a class="btn pequeno" href="${esc(seguro(a.url_dr))}" target="_blank" rel="noopener">Anúncio no Diário da República</a>` : ""}
+      </div>
+    </article>`;
+  }).join("");
 }
 
 async function carregarTerminar() {
